@@ -1,0 +1,142 @@
+/* // wxss文件
+//整个页面竖向布局 */
+
+.phone-bar{
+  /* display: block; */
+  width: 100%;
+  height: 20px;
+}
+.bg-image
+{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: -1;  
+  /* border: 1px solid red; */
+}
+
+page{
+  height: 100% ;
+}
+
+.con{
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+
+.back-line{
+  width: 100%;
+  height: 7%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+}
+ 
+.tips_con{ 
+  display: flex;
+  color: #80807C;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.tip_txt{
+  text-align: center;
+  font-size:10pt;
+}
+
+.return{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 20px;
+}
+
+
+/* 中文释义 */
+.ques_box{
+  display: flex;
+  height: 33%;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.ques_con{
+  /* height: 100%; */
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.ques_con_inner{
+  width: 60%; 
+  display: block;
+  word-break:break-all; 
+}
+
+/* 选项 */
+.container{
+  width: 100%;
+  padding: 1%;
+} 
+
+
+.wkMain{
+  display: flex;
+  flex-wrap: wrap;
+  padding:0;
+  justify-content: space-between;
+}
+
+.wkMain .box{ 
+  padding-bottom: 2%;
+  width: 360rpx;
+  height: 290rpx;
+}
+.text_box{
+  width: 100%;
+  height: 50%;
+  background-color: wheat;
+  border-bottom-left-radius: 50rpx;
+  border-bottom-right-radius: 50rpx;
+}
+.text_item_py{
+  padding-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B5A2B;
+  font-size: 10pt;
+}
+
+.img_box{
+  width: 100%;
+  height: 50%;
+  position: relative;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.item_text{
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 7%;
+  color: white;
+  font-size: 17pt;
+}
+
+.wkMain .pic{
+  display: flex;
+  border-top-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+ 

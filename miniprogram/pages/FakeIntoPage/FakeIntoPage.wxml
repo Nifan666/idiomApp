@@ -1,0 +1,24 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 --> 
+<view>
+  <image class="bg-image" mode="aspectFill" src="/images/bg.png"></image> 
+  <view class="con">
+    <view  class="phone-bar"></view>
+    <view class="back-line">
+      <navigator url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
+        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+      </navigator>
+    </view>
+    <view class="begin_game_box">
+      <view class="title_line">
+        <image class="title_img" mode="aspectFit" src="/images/game_item/fakebegin.png"></image>
+      </view>
+      <view class="game_line">
+        <navigator url="/pages/FakeGamePage/FakeGamePage" hover-class="none">
+          <view class="begin">开始</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+

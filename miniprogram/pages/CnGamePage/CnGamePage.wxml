@@ -1,0 +1,69 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 -->
+<view  class="phone-bar"></view>
+<view>
+  <image class="bg-image" mode="aspectFill" src="/images/game_item/game_bg.png"></image> 
+  <view class="con">
+    <view class="back-line">
+      <navigator url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
+        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+      </navigator>
+    </view>
+    <view class="tips_box">
+        <view class="tips_con">
+          <view class="tip_txt">选择符合中文意思的成语</view>
+          <view class="line"></view>
+          <view class="tip_txt">第一题（共20题）</view>
+        </view>
+      </view>
+    
+    <view class="ques_box">
+      <view class="ques_con">
+        <view class="ques_con_inner">
+          死守经验，不知变通sadsadasdsadsa
+        </view>
+      </view>
+    </view>
+    <view class="container">
+      <view class="wkMain">
+        <view class="box" id="cn_game">
+          <view class="img_box">
+            <image class="pic" mode="aspectFill" src="/images/game_item/red.png"></image>
+            <view class="item_text">守株待兔</view>
+          </view>
+          <view class="text_box">
+            <view class="text_item_py">jian yi yong wei</view>
+          </view>
+        </view>
+        <view class="box" id="cn_game">
+          <view class="img_box">
+            <image class="pic" mode="aspectFill" src="/images/game_item/green.png"></image>
+            <view class="item_text">寡不敌众</view>
+          </view>
+          <view class="text_box">
+            <view class="text_item_py">jian yi yong wei</view>
+          </view>
+        </view>
+        <view class="box" id="cn_game">
+          <view class="img_box">
+            <image class="pic" mode="aspectFill" src="/images/game_item/yellow.png"></image>  
+            <view class="item_text">画蛇添足</view>
+          </view>
+          <view class="text_box">
+            <view class="text_item_py">jian yi yong wei</view>
+          </view>
+        </view>
+        <view class="box" id="cn_game">
+          <view class="img_box">
+            <image class="pic" mode="aspectFill" src="/images/game_item/blue.png"></image>
+            <view class="item_text">厅里厅气</view>
+          </view>
+          <view class="text_box">
+            <view class="text_item_py">jian yi yong wei</view> 
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

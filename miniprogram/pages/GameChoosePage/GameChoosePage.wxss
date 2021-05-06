@@ -1,0 +1,43 @@
+/* pages/GameChoosePage/GameChoosePage.wxss */
+/** common.wxss **/
+.bg-image
+{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: -1;  
+}
+
+page{
+  position: relative;
+}
+.outest-box{
+  position: absolute;
+  margin-top: 30%;
+  width: 100%;
+  height: 100%;
+}
+
+.container{
+  padding: 3%;
+} 
+
+.wkMain{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.wkMain .box{
+  /* padding: 1%; */
+  padding-bottom: 2%;
+  width: 345rpx;
+  height: 345rpx;
+}
+.wkMain .pic{
+  width: 100%;
+  height: 100%;
+}
+
+
+

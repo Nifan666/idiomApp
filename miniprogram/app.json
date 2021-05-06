@@ -1,26 +1,52 @@
 {
   "pages": [
+    "pages/GameChoosePage/GameChoosePage",
+    "pages/FakeGamePage/FakeGamePage",
+    "pages/FakeIntoPage/FakeIntoPage",
+    "pages/SceneGamePage/SceneGamePage",
+    "pages/EngGamePage/EngGamePage",
+    "pages/CnGamePage/CnGamePage",
     "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/logs/logs" 
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationStyle": "custom",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  
+"tabBar":{
+  "selectedColor":"#d8a76f",
+  "list":[
+    {
+      "pagePath":"pages/GameChoosePage/GameChoosePage",
+      "text":"首页",
+      "iconPath":"/images/home_tab.png",
+      "selectedIconPath":"/images/home_tab_sl.png"
+    },
+    {
+      "pagePath":"pages/GameChoosePage/GameChoosePage",
+      "text":"群词荟萃",
+      "iconPath":"/images/words_tab.png",
+      "selectedIconPath":"/images/words_tab_sl.png"
+      
+    },
+    {
+      "pagePath":"pages/GameChoosePage/GameChoosePage",
+      "text":"论英雄",
+      "iconPath":"/images/game_tab.png",
+      "selectedIconPath":"/images/game_tab_sl.png"
+    },
+    {
+      "pagePath":"pages/GameChoosePage/GameChoosePage",
+      "text":"伊人",
+      "iconPath":"/images/user_tab.png",
+      "selectedIconPath":"/images/user_tab_sl.png"
+    }
+  ]
+},
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

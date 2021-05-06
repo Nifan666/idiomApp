@@ -1,0 +1,44 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 -->
+
+<view>
+  <image class="bg-image" mode="aspectFill" src="/images/game_item/fake_bg.png"></image> 
+  <view class="con">
+    <view  class="phone-bar"></view>
+    <view class="back-line">
+      <navigator url="/pages/GameChoosePage/GameChoosePage">
+        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+        <view class="title">汉字打假</view>
+      </navigator>
+    </view>
+
+    <view class="ques_box">
+      <view class="item">
+        <view class="text_item">
+          <text>欢度春节</text>
+        </view>
+      </view>
+      <view class="vertical_line"></view>
+      <view class="item">
+        <view class="text_item">
+          <text>欢渡春节</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="tips_line">
+      <view class="tips_box">1/10</view>
+      <view class="tips_box">点击你认为正确的一侧</view> 
+    </view>
+    <view class="choose_box">
+      <view class="choose_btn">
+        <image class="cs_btn_img" mode="aspectFit" src="/images/game_item/cs_btn.png"></image>
+      </view>
+      <view class="choose_btn">
+        <image class="cs_btn_img" mode="aspectFit" src="/images/game_item/cs_btn.png"></image>
+      </view>
+    </view>
+    <view class="bottom"></view>
+  </view>
+</view>
+
