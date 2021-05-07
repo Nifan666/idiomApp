@@ -2,7 +2,8 @@
 //整个页面竖向布局 */
 
 .phone-bar{
-  display: block;
+  /* display: block; */
+  width: 100%;
   height: 20px;
 }
 .bg-image
@@ -63,6 +64,7 @@ page{
   justify-content: center;
   align-content: center;
   flex-direction: column;
+  position: relative;
 }
 
 .ques_con{
@@ -72,9 +74,11 @@ page{
   align-content: center;
 }
 .ques_con_inner{
-  width: 60%; 
+  width: 70%; 
   display: block;
   word-break:break-all; 
+  font-size:12pt;
+  padding-bottom: 10%;
 }
 
 /* 选项 */
@@ -89,12 +93,14 @@ page{
   flex-wrap: wrap;
   padding:0;
   justify-content: space-between;
+  position: relative;
 }
 
 .wkMain .box{ 
   padding-bottom: 2%;
   width: 360rpx;
   height: 290rpx;
+  position: relative;
 }
 .text_box{
   width: 100%;
@@ -125,7 +131,7 @@ page{
   bottom: 0;
   padding-bottom: 7%;
   color: white;
-  font-size: 17pt;
+  font-size: 15pt;
 }
 
 .wkMain .pic{
@@ -137,5 +143,51 @@ page{
 }
 
 
+/* 答案的效果 */
+.is_right_box{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: 0;
+  flex: 1;
+  display:flex;
+  
+}
 
+.is_right_box image{
+  height: 80rpx;
+  width: 80rpx;
+}
  
+/* 中间的答案按钮 */
+.face{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.face image{
+  width: 300rpx;
+  height: 200rpx;
+}
+
+.tip_continue{
+  font-size: 10pt;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interlayer{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

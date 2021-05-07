@@ -106,3 +106,20 @@
  .bottom{
    height: 20%;
  }
+ 
+
+.interlayer{
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 居中显示是否正确 */
+.interlayer image{
+  width: 500rpx;
+  height: 300rpx;
+}

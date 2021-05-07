@@ -15,30 +15,34 @@
     <view class="ques_box">
       <view class="item">
         <view class="text_item">
-          <text>欢度春节</text>
+          <text>{{answers[0]}}</text>
         </view>
       </view>
       <view class="vertical_line"></view>
       <view class="item">
         <view class="text_item">
-          <text>欢渡春节</text>
+          <text>{{answers[1]}}</text>
         </view>
       </view>
     </view>
     
     <view class="tips_line">
-      <view class="tips_box">1/10</view>
+      <view class="tips_box">{{num}}/20</view>
       <view class="tips_box">点击你认为正确的一侧</view> 
     </view>
     <view class="choose_box">
-      <view class="choose_btn">
-        <image class="cs_btn_img" mode="aspectFit" src="/images/game_item/cs_btn.png"></image>
-      </view>
-      <view class="choose_btn">
-        <image class="cs_btn_img" mode="aspectFit" src="/images/game_item/cs_btn.png"></image>
-      </view>
+      <view class="choose_btn" wx:for="{{2}}" wx:key="key" wx:for-index="idx">
+        <image class="cs_btn_img" mode="aspectFit" src="/images/game_item/cs_btn.png" bindtap="btnclick" data-index="{{idx}}"></image>
+      </view> 
     </view>
     <view class="bottom"></view>
+  </view>
+
+  <!-- 用于处理当前是否处于 一题结束  -->
+  <view class="interlayer" wx:if="{{isOneEnd}}"  >
+
+    <image wx:if="{{isCorrect}}" mode="aspectFill" src="/images/game_item/right_center.png"></image>
+    <image wx:else mode="aspectFill" src="/images/game_item/false_center.png"></image>
   </view>
 </view>
 

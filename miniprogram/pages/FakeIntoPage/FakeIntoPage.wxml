@@ -5,8 +5,8 @@
   <view class="con">
     <view  class="phone-bar"></view>
     <view class="back-line">
-      <navigator url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
-        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+      <navigator url="/pages/GameChoosePage/GameChoosePage">
+        <image bindtap="return_func" class="return" src="/images/return.png"></image> 
       </navigator>
     </view>
     <view class="begin_game_box">

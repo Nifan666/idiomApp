@@ -1,0 +1,117 @@
+.bg-image
+{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: -1;  
+  /* border: 1px solid red; */
+}
+
+.con{
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+
+.phone-bar{
+  /* display: block; */
+  width: 100%;
+  height: 20px;
+}
+
+
+.congra_line{
+  width: 100%;
+  height: 7%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0%;
+}
+.congra_item{
+   
+  /* left: 20px; */
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+}
+.congra_line image{
+  margin-top: 40%;
+  width: 650rpx;
+  height: 300rpx;
+}
+
+
+/* 上半部分 */
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%; 
+  position: relative;
+}
+
+.finish_line{
+  position: absolute;
+  height: 20%;
+  width: 100%;
+  bottom: 2%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.finish_item{
+  position: absolute;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.finish_text{
+  width: 500rpx;
+  height: 200rpx;
+} 
+
+/* 按钮 */
+.choose_box{
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 底部按钮 */
+.btn_box{
+  width: 100%;
+  height: 20%;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+
+.btn_item{
+  /* padding-right: 5%; */
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn_item view{
+  width: 100px;
+  height: 40px;
+  color: red;
+  background-color: #ac3435;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  /* font-weight: 800; */
+  font-size: 12pt;
+}
