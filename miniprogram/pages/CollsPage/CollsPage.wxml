@@ -24,7 +24,8 @@
     <scroll-view scroll-y="true" class="scroll-box">
       <view style="height:{{190*num}}rpx;padding:3%" >
         <view class="coll-item-box con-center" wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:180rpx;margin-top:10rpx;background-color:white; padding:2%">
-          <van-image width="80" height="80" fit="cover" src="{{imgUrl}}/56.jpg" />
+          
+          <van-image width="80" height="80" fit="cover" src="{{imgUrl}}/{{item.item[0].wpic}}" />
           <view class="coll-item-text">
             <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
             <view class="name" wx:else>{{item.wname}}</view>

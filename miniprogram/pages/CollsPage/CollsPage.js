@@ -10,7 +10,7 @@ Page({
     value: '',
     colls:[],
     isSearch:false,
-    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/CelebrityClassification"
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956"
   },
 
   /**
