@@ -7,7 +7,9 @@ Page({
    */
   data: {
     user_openid:null,
-    medal:{}
+    medal:{},
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
+    isCollAll:false
   },
   backGameChoose:function(){
     wx.switchTab({
@@ -30,7 +32,7 @@ Page({
        that.setData({
         user_openid:res.result.openid
        })
-      console.log("opendid"+res.result.openid)
+      // console.log("opendid"+res.result.openid)
        wx.cloud.callFunction({
         name:'select_mpic',
         data:{
@@ -48,34 +50,46 @@ Page({
           //   medal:res.result.list[0].medeldetail[0]
           // }) 
           var lis = res.result.list
-          if(that.isEmpty(lis)|| lis.length==0 || that.isEmpty(lis[0].medeldetail) || lis[0].medeldetail.length==0){
-            var tmedal = that.data.medal
-            tmedal["mpic"] ="/images/game_item/medal1.jpg"
+          var tmedal = that.data.medal
+          if(lis[0].medal_num==0){
+            tmedal["mpic"] ="/Medal_pic/medal1.jpg"
             that.setData({
               medal:tmedal
             })
           }else{
-            that.setData({
-              medal:lis[0].medeldetail[0]
-            })
+             //更新
+            var tmedal_num = parseInt(lis[0].medal_num)+1
+            console.log(tmedal_num)
+            //如果勋章大于10，就抛弃
+            if(tmedal_num>10){
+              tmedal["mpic"] ="/Medal_pic/medal"+10+".jpg"
+              that.setData({
+                medal:tmedal,
+                isCollAll:true
+              })
+  
+              }else{
+                tmedal_num = tmedal_num.toString()
+                db.collection('user_tb').where({
+                  _openid: that.data.user_openid
+                }).update({
+                  // data 传入需要局部更新的数据
+                  data: {
+                    // 表示将 done 字段置为 true
+                    medal_num: parseInt(tmedal_num)
+                  },
+                  success: function(res) {
+                    console.log("更新了")
+                    tmedal["mpic"] ="/Medal_pic/medal"+tmedal_num+".jpg"
+                   
+                    that.setData({
+                      medal:tmedal
+                    })
+                  }
+                })
+              }
           }
-          //更新
-          var tmedal_num = parseInt(lis[0].medal_num)+1
-          tmedal_num = tmedal_num.toString()
-          db.collection('user_tb').where({
-            _openid: that.data.user_openid
-          }).update({
-            // data 传入需要局部更新的数据
-            data: {
-              // 表示将 done 字段置为 true
-              medal_num: tmedal_num
-            },
-            success: function(res) {
-               
-            }
-          })
-
-          console.log(res) 
+          
         }
       })
 

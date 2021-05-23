@@ -1,6 +1,7 @@
 // app.js
 App({
   onLaunch() {
+    var that = this
     // 展示本地存储能力
     wx.cloud.init({
       // env 参数说明：
@@ -18,14 +19,21 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        
+        wx.cloud.callFunction({
+          name: 'login',
+          complete: res => { 
+            this.globalData._openid= res.result.openid;
+          }
+         }) 
       }
     })
 
 
+    
+
   },
   globalData: {
     userInfo: null,
-   
+    _openid:null
   }
 })

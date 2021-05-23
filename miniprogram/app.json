@@ -1,5 +1,10 @@
 {
   "pages": [
+    
+    "pages/index/index","pages/CollsPage/CollsPage",
+    "pages/UserInfoPage/UserInfoPage",
+    "pages/RankPage/RankPage",
+    "pages/MedalsPage/MedalsPage",
     "pages/GameChoosePage/GameChoosePage",
     "pages/FakeGamePage/FakeGamePage",
     "pages/FakeIntoPage/FakeIntoPage",
@@ -7,7 +12,7 @@
     "pages/EngGamePage/EngGamePage",
     "pages/CnGamePage/CnGamePage",
     "pages/GameEndPage/GameEndPage",
-    "pages/index/index",
+    
     "pages/logs/logs" 
   ],
   "window": {
@@ -40,7 +45,7 @@
         "selectedIconPath":"/images/game_tab_sl.png"
       },
       {
-        "pagePath":"pages/GameChoosePage/GameChoosePage",
+        "pagePath":"pages/UserInfoPage/UserInfoPage",
         "text":"伊人",
         "iconPath":"/images/user_tab.png",
         "selectedIconPath":"/images/user_tab_sl.png"
@@ -48,6 +53,5 @@
     ]
   },
 
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -2,12 +2,12 @@
 <!-- // wxml文件 -->
 
 <view>
-  <image class="bg-image" mode="aspectFill" src="/images/game_item/fake_bg.png"></image> 
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/game_item/fake_bg.png"></image> 
   <view class="con">
     <view  class="phone-bar"></view>
     <view class="back-line">
       <navigator url="/pages/GameChoosePage/GameChoosePage">
-        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+        <image bindtap="return_func" class="return" src="{{imgUrl}}/return.png"></image>
         <view class="title">汉字打假</view>
       </navigator>
     </view>
@@ -32,17 +32,16 @@
     </view>
     <view class="choose_box">
       <view class="choose_btn" wx:for="{{2}}" wx:key="key" wx:for-index="idx">
-        <image class="cs_btn_img" mode="aspectFit" src="/images/game_item/cs_btn.png" bindtap="btnclick" data-index="{{idx}}"></image>
+        <image class="cs_btn_img" mode="aspectFit" src="{{imgUrl}}/game_item/cs_btn.png" bindtap="btnclick" data-index="{{idx}}"></image>
       </view> 
     </view>
     <view class="bottom"></view>
   </view>
 
   <!-- 用于处理当前是否处于 一题结束  -->
-  <view class="interlayer" wx:if="{{isOneEnd}}"  >
-
-    <image wx:if="{{isCorrect}}" mode="aspectFill" src="/images/game_item/right_center.png"></image>
-    <image wx:else mode="aspectFill" src="/images/game_item/false_center.png"></image>
+  <view class="interlayer" wx:if="{{isOneEnd}}">
+    <image wx:if="{{isCorrect}}" mode="aspectFill" src="{{imgUrl}}/game_item/right_center.png"></image>
+    <image wx:else mode="aspectFill" src="{{imgUrl}}/game_item/false_center.png"></image>
   </view>
 </view>
 

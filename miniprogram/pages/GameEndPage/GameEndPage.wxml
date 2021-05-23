@@ -2,27 +2,28 @@
 <!-- // wxml文件 -->
 
 <view>
-  <image class="bg-image" mode="aspectFill" src="/images/game_item/game_bg.png"></image> 
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/game_item/game_bg.png"></image> 
   <view class="con">
     <view  class="phone-bar"></view>
     <view class="box">
       <view class="congra_line">
         <view class="congra_item">
-          <image mode="aspectFit" src="/images/game_item/congra_text.png"></image>
+          <image mode="aspectFit" wx:if="{{!isCollAll}}" src="{{imgUrl}}/GameChoosePage/game_item/congra_text.png"></image>
+          <image mode="aspectFit" wx:else src="{{imgUrl}}/GameChoosePage/coll_all.png"></image>
         </view>
-      </view>
-    
-      <image class="model_pic" mode="aspectFit" src="{{medal.mpic}}"></image>
-
+      </view> 
+      <image class="model_pic" mode="aspectFit" src="{{imgUrl + medal.mpic}}"></image>
       <view class="finish_line">
         <view class="finish_item">
-          <image class="finish_text"  mode="aspectFit"  src="/images/game_item/finish_text.png"></image>
+          <image class="finish_text"  mode="aspectFit"  src="{{imgUrl}}/GameChoosePage/game_item/finish_text.png"></image>
         </view>
       </view>
     </view>
     <view class="btn_box">
       <view class="btn_item">
-        <view  class="model_btn">查看勋章</view>
+        <navigator url="/pages/MedalsPage/MedalsPage" hover-class="none">
+          <view  class="model_btn">查看勋章</view>
+        </navigator>
         <view bindtap="backGameChoose" class="back_btn">返回</view>
       </view>
     </view>

@@ -5,13 +5,14 @@ Page({
    */
   data: {
     fakeAnswers: null,
-    picUrls:["/images/game_item/red.png","/images/game_item/green.png","/images/game_item/yellow.png","/images/game_item/blue.png"],
+    picUrls:["/game_item/red.png","/game_item/green.png","/game_item/yellow.png","/game_item/blue.png"],
     ques_id:null,
     iscenter:false,
     num:1,
     isOneEnd:false,
     isCorrect:true,
-    correctTime:0
+    correctTime:0,
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/GameChoosePage"
   },
   // 一题结束
   oneQuesEnd:function(){
@@ -51,8 +52,8 @@ Page({
           fakeAnswers:res.list,
           //生成随机问题id
           ques_id : Math.floor(Math.random() * 4)
-        })
-        if(this.data.fakeAnswers[this.data.ques_id].w_eng_interpre.length<13){
+        }) 
+        if(this.data.fakeAnswers[this.data.ques_id].w_eng_interpre.length<30){
           this.setData({
             iscenter:true ,
             isOneEnd:false,

@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/GameChoosePage"
   },
 
   /**

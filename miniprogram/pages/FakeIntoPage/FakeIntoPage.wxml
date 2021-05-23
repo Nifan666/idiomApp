@@ -1,17 +1,17 @@
 <!--pages/CnGamePage/CnGamePage.wxml-->
 <!-- // wxml文件 --> 
 <view>
-  <image class="bg-image" mode="aspectFill" src="/images/bg.png"></image> 
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/bg.png"></image> 
   <view class="con">
     <view  class="phone-bar"></view>
     <view class="back-line">
       <navigator url="/pages/GameChoosePage/GameChoosePage">
-        <image bindtap="return_func" class="return" src="/images/return.png"></image> 
+        <image bindtap="return_func" class="return" src="{{imgUrl}}/return.png"></image> 
       </navigator>
     </view>
     <view class="begin_game_box">
       <view class="title_line">
-        <image class="title_img" mode="aspectFit" src="/images/game_item/fakebegin.png"></image>
+        <image class="title_img" mode="aspectFit" src="{{imgUrl}}/game_item/fakebegin.png"></image>
       </view>
       <view class="game_line">
         <navigator url="/pages/FakeGamePage/FakeGamePage" hover-class="none">

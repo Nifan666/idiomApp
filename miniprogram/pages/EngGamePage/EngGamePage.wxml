@@ -1,12 +1,12 @@
 <!--pages/CnGamePage/CnGamePage.wxml-->
 <!-- // wxml文件 --> 
 <view>
-  <image class="bg-image" mode="aspectFill" src="/images/game_item/game_bg.png"></image> 
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/game_item/game_bg.png"></image> 
   <view class="con">
     <view  class="phone-bar"></view>
     <view class="back-line">
       <navigator url="/pages/GameChoosePage/GameChoosePage">
-        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+        <image bindtap="return_func" class="return" src="{{imgUrl}}/return.png"></image>
       </navigator>
     </view>
 
@@ -37,7 +37,7 @@
         bindtap="clickAnser" data-index="{{idx}}"
         >
           <view class="img_box">
-            <image class="pic" mode="aspectFill" src="{{picUrls[idx]}}"></image>
+            <image class="pic" mode="aspectFill" src="{{imgUrl + picUrls[idx]}}"></image>
             <view class="item_text">{{word.wname}}</view>
           </view>
           <view class="text_box">
@@ -46,25 +46,25 @@
 
           <!-- 做对错的图标 -->
           <view class="is_right_box" wx:if="{{idx==0 && isOneEnd}}">
-            <image wx:if="{{idx == ques_id}}" src="/images/game_item/right.png"></image>       
-            <image wx:else src="/images/game_item/false.png"></image>       
+            <image wx:if="{{idx == ques_id}}" src="{{imgUrl}}/game_item/right.png"></image>       
+            <image wx:else src="{{imgUrl}}/game_item/false.png"></image>       
           </view>
           <view class="is_right_box" wx:elif="{{idx==1 && isOneEnd}}" style="justify-content:flex-end;">
-            <image wx:if="{{idx == ques_id}}" src="/images/game_item/right.png"></image>       
-            <image wx:else src="/images/game_item/false.png"></image>       
+            <image wx:if="{{idx == ques_id}}" src="{{imgUrl}}/game_item/right.png"></image>       
+            <image wx:else src="{{imgUrl}}/game_item/false.png"></image>       
           </view>
           <view class="is_right_box" wx:elif="{{idx==2 && isOneEnd}}" style="align-items:flex-end;">
-            <image wx:if="{{idx == ques_id}}" src="/images/game_item/right.png"></image>       
-            <image wx:else src="/images/game_item/false.png"></image>       
+            <image wx:if="{{idx == ques_id}}" src="{{imgUrl}}/game_item/right.png"></image>       
+            <image wx:else src="{{imgUrl}}/game_item/false.png"></image>       
           </view>
           <view class="is_right_box" wx:elif="{{idx==3 && isOneEnd}}" style="justify-content:flex-end;align-items:flex-end;">
-            <image wx:if="{{idx == ques_id}}" src="/images/game_item/right.png"></image>       
-            <image wx:else src="/images/game_item/false.png"></image>       
+            <image wx:if="{{idx == ques_id}}" src="{{imgUrl}}/game_item/right.png"></image>       
+            <image wx:else src="{{imgUrl}}/game_item/false.png"></image>       
           </view>
         </view>
         <view class="face" wx:if="{{isOneEnd}}">
-          <image mode="aspectFill" src="/images/game_item/right_center.png" wx:if="{{isCorrect}}"></image>
-          <image mode="aspectFill" src="/images/game_item/false_center.png" wx:else></image>
+          <image mode="aspectFill" src="{{imgUrl}}/game_item/right_center.png" wx:if="{{isCorrect}}"></image>
+          <image mode="aspectFill" src="{{imgUrl}}/game_item/false_center.png" wx:else></image>
         </view>
       </view>
     </view>

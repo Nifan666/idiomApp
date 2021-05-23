@@ -1,31 +1,31 @@
 <!--pages/GameChoosePage/GameChoosePage.wxml-->
 <!--背景图片-->
 <view>
-  <image class="bg-image" mode="aspectFill" src="/images/bg.png"></image>
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/bg.png"></image>
   <view class="outest-box">
     <view class="container">
       <view class="wkMain">
         <navigator url="/pages/CnGamePage/CnGamePage" hover-class="none">
           <view class="box" id="cn_game">
-            <image class="pic" mode="aspectFit" src="/images/game_left_up.png"></image>
+            <image class="pic" mode="aspectFit" src="{{imgUrl}}/game_left_up.png"></image>
           </view>
         </navigator>
 
         <navigator url="/pages/EngGamePage/EngGamePage" hover-class="none" >
         <view class="box" id="cn_game">
-          <image class="pic" mode="aspectFit" src="/images/game_r_up.png"></image>
+          <image class="pic" mode="aspectFit" src="{{imgUrl}}/game_r_up.png"></image>
         </view>
         </navigator>
 
         <navigator url="/pages/SceneGamePage/SceneGamePage" hover-class="none">
         <view class="box" id="cn_game">
-          <image class="pic" mode="aspectFit" src="/images/game_left_down.png"></image>
+          <image class="pic" mode="aspectFit" src="{{imgUrl}}/game_left_down.png"></image>
         </view>
         </navigator>
 
         <navigator url="/pages/FakeIntoPage/FakeIntoPage" hover-class="none">
         <view class="box" id="cn_game">
-          <image class="pic" mode="aspectFit" src="/images/game_r_down.png"></image>
+          <image class="pic" mode="aspectFit" src="{{imgUrl}}/game_r_down.png"></image>
         </view>
         </navigator>
 

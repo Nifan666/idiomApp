@@ -5,14 +5,15 @@ Page({
    */
   data: {
     fakeAnswers: null,
-    picUrls:["/images/game_item/red.png","/images/game_item/green.png","/images/game_item/yellow.png","/images/game_item/blue.png"],
+    picUrls:["/game_item/red.png","/game_item/green.png","/game_item/yellow.png","/game_item/blue.png"],
     ques_id:null,
     iscenter:false,
     num:1,
     isOneEnd:false,
     isCorrect:true,
     correctTime:0,
-    ques_stc:"外交调研是一门特殊的学问，既要善于__________，又不能听风便是雨。"
+    ques_stc:"",
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/GameChoosePage"
   },
 
   // 一题结束
@@ -40,74 +41,51 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initPage()
+    this.initPage() 
   },
   initPage:function(){
-    var fakeAnswers=[
-      {
-        wpinyin:"hjkshakhsahk",
-        wname:"衣食父母"
-      },
-      {
-        wpinyin:"hjkshakhsahk",
-        wname:"后古薄今"
-      },
-      {
-        wpinyin:"hjkshakhsahk",
-        wname:"狗尾续貂"
-      },
-      {
-        wpinyin:"hjkshakhsahk",
-        wname:"比能像见"
-      }
-    ]
-    this.setData({
-      fakeAnswers:fakeAnswers,
-      ques_id:1
-    })
+    this.getdbdata()
   },
   getdbdata:function(){
     var that = this
-    //获取正确的填词，随机获取   +  精准匹配一个单词
-    var sceneTbCollection=db.collection('scene_game_tb');
-    //初始化问题 + 中间ques的显示
-    sceneTbCollection.aggregate()
-      .sample({
-        size: 1
-      }).end().then(  res => {  
-        that.data.fakeAnswers = []
-        that.data.fakeAnswers.push(res.list[0])  //插入第一个元素
-
-        //然后随机查找3个单词
-        var sceneTbCollection=db.collection('scene_game_tb');
-        //初始化问题 + 中间ques的显示
-        sceneTbCollection.aggregate()
-          .sample({
-            size: 3
-          }).end().then(  res => {  
-            for(var item in res.list){
-              that.data.fakeAnswers.push(item)  //插入随机生成的错误答案
-            }
-            //生成1-4不重复的数组
-            var tarr = []  // 已经随机生成了
-            var switchArr = []  //用于后面替换fakeArr的
-            var i = 0
-            for(var item in tarr){
-              switchArr.push(fakeAnswers[item])
-              if(item==0){
-                that.setData({
-                ques_id:i
-                }) 
+      wx.cloud.callFunction({
+        name:'randomSceneQues',
+        data:{
+          collection:'scene_game_tb',
+          from:'word_tb',
+          localField:'sg_answer_id',
+          foreignField:'wid',
+          as:'ques'
+        },
+        success:res=>{
+          console.log(res.result.list[0])
+          var realAnswer = res.result.list[0].ques[0];
+          var ques = res.result.list[0].sg_ques_stc
+          //获取三个随机答案
+          db.collection("word_tb").aggregate()
+          .sample({
+            size: 3
+          }).end().then(  res => { 
+              var falseAnswer = res.list;
+              var index = Math.floor(Math.random() * 4)
+              var chooses = []
+              var k = 0;
+              for(var i =0;i<4;i++){
+                if(index == i){
+                  chooses.push(realAnswer);
+                }else{
+                  chooses.push(falseAnswer[k])
+                  k = k+1
+                }
               }
-              i = i+1
-            }
-            that.setData({
-              fakeAnswers:switchArr,
-              isOneEnd:false,
-            })
-            //---------- 答案生成结束-----------------------
+              that.setData({
+                fakeAnswers:chooses,
+                ques_stc:ques,
+                ques_id: index
+              })
           })
-        })
+        }
+      })
   },
 
   return_func:function(){
