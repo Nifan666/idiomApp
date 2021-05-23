@@ -1,0 +1,64 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 -->
+<view>
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/user_bg.png"></image> 
+  <view class="con">
+    <view  class="phone-bar"></view>
+    <view class="offset">
+    </view>
+    <view class="head_box">
+      <view class="head_item">
+        <view class="userinfo" >
+          <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
+            <view class="userinfo-avatar">
+              <open-data  type="userAvatarUrl"></open-data>
+            </view> 
+          </block>
+          <block wx:elif="{{!hasUserInfo}}" >
+            <button wx:if="{{canIUseGetUserProfile}}"  bindtap="getUserProfile"> 获取头像 </button>
+            <view  wx:elif="{{canIUse}}" class="get_info_div">
+              <button   open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像 </button>
+            </view>
+            
+            <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+          </block>
+          <block wx:else>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <!-- <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="nav_box">
+      <view class="nav_line">
+        <view class="nav_center">
+          <navigator url="/pages/CollsPage/CollsPage"  class="nav" hover-class="none" >
+          <view class="nav_item" >
+              <image class="nav_img" mode="aspectFill" src="{{imgUrl}}/head.jpg"></image>
+              <text>我的收藏</text>
+            </view>
+          </navigator>
+          <navigator url="/pages/RankPage/RankPage"  class="nav" hover-class="none" >
+          <view class="nav_item" >
+              <image class="nav_img" mode="aspectFill" src="{{imgUrl}}/head.jpg"></image>
+              <text>游戏排名</text>
+            </view>
+          </navigator>
+          <navigator url="/pages/MedalsPage/MedalsPage"  class="nav"  hover-class="none">
+          <view class="nav_item" >
+              <image class="nav_img" mode="aspectFill" src="{{imgUrl}}/head.jpg"></image>
+              <text>我的勋章</text>
+            </view>
+          </navigator>
+          <navigator url="/images/game_item/game_bg.png"  class="nav" hover-class="none" >
+          <view class="nav_item" >
+              <image class="nav_img" mode="aspectFill" src="{{imgUrl}}/head.jpg"></image>
+              <text>关于我们</text>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

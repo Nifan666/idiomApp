@@ -1,0 +1,135 @@
+/* // wxss文件
+//整个页面竖向布局 */
+
+.phone-bar{
+  /* display: block; */
+  width: 100%;
+  height: 20px;
+}
+.bg-image
+{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: -1;  
+  /* border: 1px solid red; */
+}
+
+
+.con{
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+
+.offset{
+  width: 100%;
+  height: 8%;
+}
+.head_box{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  padding-left: 5%;
+}
+
+.head_img{
+  overflow: hidden;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 500rpx;
+  /* box-shadow:0px 2px 5px 5px  #FFF8DC; */
+  border: 2px solid white;
+}
+
+
+/* 图片 */
+.nav_img{
+  height: 130rpx;
+  width: 130rpx;
+  border-radius: 500rpx;
+}
+
+/* 总行大小*/
+.nav_box{
+  height: 35%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+/* 内部背景 */
+.nav_line{
+  width: 80%;
+  height: 100%;
+  border-radius: 5%;
+  background-color: #FDF8F8;
+  display: flex;
+  justify-content: center;
+  
+  /* align-items: center; */
+}
+
+/* 内部负责位移居中的 */
+.nav_center{
+  width: 80%;
+  height: 100%;
+  /* background-color: blue; */
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.nav_item{
+  width: 100%;
+  height: 100%;
+  display:flex; 
+  justify-content:center; 
+  align-items:center; 
+  flex-direction: column; 
+}
+
+.nav{
+  width: 50%;
+  height: 50%;
+  
+}
+
+.nav_item{
+  font-size: 10pt;
+  color: #708090;
+  
+}
+
+.head_item{
+  /* width: 100%; */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ /* 头像 */
+.userinfo-avatar {
+  overflow:hidden;
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 20rpx;
+  margin-top: 50rpx;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+ 
+.userinfo text {
+  /* color: #fff; */
+  font-size: 14px;
+  background-color: #c0c0c0;
+  border-radius:40%;
+} 
+

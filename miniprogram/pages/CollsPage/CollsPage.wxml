@@ -1,0 +1,45 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 -->
+<wxs src="../../wxs/strUtil.wxs" module="tools" />
+<view>
+  <image class="bg-image" mode="aspectFill" src="/images/user/user_bg.png"></image> 
+  <view class="con">
+    <view  class="phone-bar"></view>
+    <view class="back-line">
+      <navigator url="/pages/GameChoosePage/GameChoosePage">
+        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+        <view class="title">我的收藏</view>
+      </navigator>
+    </view>
+    <van-search
+      value="{{ value }}"
+      shape="round"
+      background="#E9E9E9"
+      maxlength="20"
+      bind:change="onChange"
+      bind:search="onSearch"
+      bind:cancel="onCancel"
+      placeholder="请输入搜索关键词"
+    />
+    <scroll-view scroll-y="true" class="scroll-box">
+      <view style="height:{{190*num}}rpx;padding:3%" >
+        <view class="coll-item-box con-center" wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:180rpx;margin-top:10rpx;background-color:white; padding:2%">
+          <van-image width="80" height="80" fit="cover" src="{{imgUrl}}/56.jpg" />
+          <view class="coll-item-text">
+            <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
+            <view class="name" wx:else>{{item.wname}}</view>
+            
+            <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
+            <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
+          </view>
+          <view class="con-center">
+            <van-image width="50" height="50" fit="cover" src="cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/UserInfoPage/r_arrow.png" />
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+ 
+  </view>
+ 
+</view>
+

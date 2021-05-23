@@ -1,0 +1,11 @@
+var subStr=function(val){
+ 
+  if(val.length>20){
+    return val.substring(0,20)+"...."
+  }
+  return val
+}
+
+module.exports={
+  subStr:subStr
+}
