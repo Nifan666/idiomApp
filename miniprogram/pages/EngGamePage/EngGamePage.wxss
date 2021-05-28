@@ -28,7 +28,7 @@ page{
 
 .back-line{
   width: 100%;
-  height: 7%;
+  height: 100rpx;
   /* border: 1px solid red; */
   display: flex;
   align-items: center;

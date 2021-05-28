@@ -1,0 +1,166 @@
+.phone-bar{
+  /* display: block; */
+  width: 100%;
+  height: 20px;
+  background-color: #EBE6E0;
+}
+.center{
+  width: 100%; 
+  text-align: center;
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.topText{ color: #000; font-weight: bold; font-size: large;}
+
+page{
+  height: 100% ;
+}
+.box{
+  display: flex;
+  justify-content: center;
+}
+.center_wss{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+.row{
+  width: 100%;
+}
+.text{
+  background-color: white;
+  border-radius: 30rpx;
+  padding: 2%;
+}
+.con{
+  background-color:  #EBE6E0;
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+.reScan{
+  margin-top: 10%;
+  margin-bottom: 2%;
+}
+
+.back-line{
+  width: 100%;
+  height: 7%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+}
+.return{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 20px;
+}
+
+
+
+
+/* // wxss文件
+//整个页面竖向布局 */
+
+.phone-bar{
+  /* display: block; */
+  height: 20px;
+  background-color: #E9E9E9;
+}
+.bg-image
+{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: -1;  
+  /* border: 1px solid red; */
+}
+
+
+.con{
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+
+/* 标题 + 返回按钮 */
+.back-line{
+  width: 100%;
+  height: 7%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+}
+
+.return{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 20px;
+}
+
+.nav_tab{
+  width: 100%;
+  height: 100%;
+}
+.coll-item-box{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction:row;
+  background-color:white;
+  padding:2%; 
+}
+ 
+.coll-item-text{
+  /* margin-top: %; */
+  margin-left: 3%;
+  margin-right: 10%;
+}
+
+.detail{
+  margin-top: 4%;
+  font-size: 9pt;
+  color: rgb(126, 76, 11);
+}
+.name{
+  font-size: 12pt;
+}
+
+.con-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.scroll-box{
+  height: 80%;
+}
+
+.all_page_cover{
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.padding5{
+  padding: 5%;
+}

@@ -1,0 +1,73 @@
+<!--pages/DictConInternet/DictConInternet.wxml-->
+<!-- 内容 -->
+<view class="content"> 
+  <view  class="phone-bar"></view>
+  <view class="back-line">
+    <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
+    <van-image width="20" wx:if="{{!isColled}}" bindtap="changeCollState" height="20" fit="cover" src="{{imgUrl}}/global/star.png" />
+    <van-image width="20" wx:else height="20" bindtap="changeCollState" fit="cover" src="{{imgUrl}}/global/star_fill.png" />
+  </view>
+   
+  <view class="box-label">
+    <view class="title">
+        <view>{{word[0].wname}}</view>
+        <view class="icon">
+          <image mode="heightFix" src="{{imgUrl}}/global/net.png"></image>
+        </view>
+    </view>
+    <!-- <view class="title">成语名称</view> -->
+    <view class="img">
+      <!-- <image src="/images/bg.png"></image> -->
+      <image mode="scaleToFill"  wx:if="{{word[0].wpic.length>0 && imgUrl.length>0}}" src="{{imgUrl}}/{{word[0].wpic}}"></image>
+    </view>
+    <view class="icon">
+      <view class="icon-item" wx:for="{{navbar}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="key">
+        <view class="image-text">
+          <view>{{item}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+    <!-- 标签卡内容 -->
+  <view class="box-content" >
+    <scroll-view style="height:100%" scroll-y="true">
+    <view class="box">
+      <!--选项1：-->
+      <view hidden="{{currentTab!==0}}">
+        <view class="idiom-content" wx:for="{{content_1}}" wx:key="key">
+          <text class="tle">[{{item.name}}]</text>
+          <text>{{item.content}}</text>
+        </view>
+      </view>
+      <!-- 选项2： -->
+      <view hidden="{{currentTab!=1}}" class="idiom">
+        <view class="idiom-content2" wx:for="{{content_2}}" wx:key="key">
+          <view class="tle">
+            <text>[{{item}}]</text>
+          </view>
+          <view class="con">
+            <text wx:for="{{niceStc}}" decode="{{true}}" space="{{true}}" wx:key="key" wx:for-index="s_idx" wx:for-item="stc">
+              &nbsp;&nbsp; &nbsp;&nbsp;<text wx:if="{{stc.stc_detail.length>0}}">{{s_idx+1}}、{{stc.stc_detail}}</text>
+              <text wx:else>{{s_idx+1}}、{{stc}}</text>
+            </text>
+          </view>
+        </view>
+      </view>
+      <!--选项3：-->
+      <view hidden="{{currentTab!==2}}" class="idiom">
+        <view class="idiom-content2" wx:for="{{content_3}}" wx:key="key">
+          <view class="tle">
+            <text>[{{item}}]</text>
+          </view>
+          <view class="con">
+            <text decode="{{true}}" space="{{true}}">
+              &nbsp;&nbsp; &nbsp;&nbsp;{{word[0].wstory}}
+            </text>
+          </view>
+        </view>
+      </view>
+     </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,65 @@
+<!--pages/DictTab1List/DictTab1List.wxml-->
+<!-- 背景图 -->
+<view>
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
+</view>
+<view  class="phone-bar"></view>
+<loading wx:if="{{isLoading}}">
+    加载中..
+</loading>
+<!-- 搜索框 -->
+<view class="search-box">
+  <navigator url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
+    <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
+  </navigator>
+  <!-- <view class='page_row' bindtap="suo"> 
+    <view class="search">  
+      <view class="df search_arr">  
+        <icon class="searchcion" size='20' type='search'></icon>  
+         <input class="weui-input" type='text' placeholder="请输入要查找的成语" bindinput="bindKeyInput" confirm-type="search" bindconfirm="goToSearch" value="{{inputValue}}"  maxlength="10"/>
+      </view>  
+    </view>  
+    <view class='sousuo' bindtap="goToSearch">
+      <text class="txt">搜索</text>
+    </view>  
+  </view>   -->
+</view>
+<van-search
+    value="{{ value }}"
+    shape="round"
+    background="#EBE7DE"
+    maxlength="20"
+    bind:change="bindKeyInput"
+    bind:search="goToSearch"
+    show-action
+    bind:cancel="onCancel" 
+    placeholder="请输入搜索关键词"
+  />    
+<!-- 分类列表 -->
+<scroll-view style="height:100%" scroll-y="true">
+  <view class="box">
+    <view class="box-content">
+      <!-- <navigator open-type="navigate" url="/pages/DictConClassical/DictConClassical?idiom_name={{theme_son_id}}-{{index+1}}" class="card-item" wx:for="{{10}}" bindtap="goToIdiomCon" data-name="{{index+1}}"> -->
+      <navigator open-type="navigate" url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" class="card-item" wx:key="key" wx:for="{{word_list}}" wx:for-item="item" data-name="{{index+1}}">
+        <view class="card-item-text">
+          <view class="idiom-title">
+            <view class="tilte">{{item.wname}}</view>
+            <!-- <view class="tilte">{{theme_son_id}}-{{index+1}}</view> -->
+            <!-- <view class="icon">
+              <image mode="heightFix" src="/images/hot.png"></image>
+            </view> -->
+          </view>
+          <view class="idiom-content">
+            <text>{{item.w_cn_interpre}}</text>
+            <!-- <text>这是网络新词的意思111111111111111111111111111111</text> -->
+          </view>
+        </view>
+        <view class="card-item-icon">
+          <navigator open-type="switchTab" url="/pages/GameChoosePage/GameChoosePage">
+            <image mode="heightFix" src="/images/icon.png"></image>
+          </navigator>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</scroll-view> 

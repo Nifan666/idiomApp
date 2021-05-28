@@ -19,7 +19,7 @@ Page({
   oneQuesEnd:function(){
     //如果游戏结束，进入结束界面
     console.log("一题结束")
-    if(this.data.num == 2){
+    if(this.data.num == 20){
       console.log("通关完成,跳转到结束页面")
       wx.navigateTo({
         url: '/pages/GameEndPage/GameEndPage?',

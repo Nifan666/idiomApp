@@ -1,0 +1,79 @@
+<!--pages/IdiomDictTab1/IdiomDictTab1.wxml-->
+<!-- 背景图 -->
+<view>
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
+</view>
+<view  class="phone-bar"></view>
+<!-- 搜索框 -->
+<view class="search-box">
+  <navigator url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
+    <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
+  </navigator>
+  <!-- <view class='page_row' bindtap="suo">   -->
+    <!-- <view class="search">   -->
+      <!-- <view class="df search_arr">  
+        <icon class="searchcion" size='20' type='search'></icon>  
+        <input class="weui-input" type='text' placeholder="来自{{theme_id}}的小分类" bindinput="bindKeyInput" confirm-type="search" bindconfirm="goToSearch" value="{{inputValue}}"  maxlength="10"/>
+      </view>   -->
+    <!-- </view>   -->
+    
+    <!-- <view class='sousuo' bindtap="goToSearch">
+      <text class="txt">搜索</text>
+    </view>   -->
+  <!-- </view>   -->
+   
+</view>
+<van-search
+    value="{{ value }}"
+    shape="round"
+    background="#EBE7DE"
+    maxlength="20"
+    bind:change="bindKeyInput"
+    bind:search="goToSearch"
+    show-action
+    bind:cancel="onCancel" 
+    placeholder="请输入搜索关键词"
+  />    
+<!-- 分类内容 -->
+<loading wx:if="{{isLoading}}">
+    加载中..
+</loading>
+<view class="content" wx:if="{{!isSearch}}">
+  <navigator open-type="navigate"  url="/pages/DictTab1List/DictTab1List?theme_id={{theme_id}}&son_theme_id={{item.son_theme_id}}" class="box"
+   wx:for="{{son_theme}}" wx:for-item="item" wx:key="key"
+   bindtap="goToIdiomList" data-name="{{index+1}}">
+    <view class="pic">
+      <!-- mode需要看情况调整 -->
+      <!-- <image mode="scaleToFill" src="/images/bg.png"></image> -->
+      <image mode="scaleToFill" src="cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/{{item.son_theme_pic}}"></image>
+    </view>
+    <view class="txt">
+      <!-- <view>{{theme_id}}-{{index+1}}</view> -->
+      <view class="son_theme_text" >{{item.son_theme_name}}</view>
+    </view>
+  </navigator>
+</view>
+
+<scroll-view style="height:82%" wx:if="{{isSearch}}" scroll-y="true">
+    <navigator open-type="navigate"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" wx:key="key" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{InternetNewWork}}"> 
+      <!-- <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?idiom_name={{index+1}}" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
+        <view class="card-item-text">
+          <view class="idiom-title">
+            <view class="tilte">{{item.wname}}</view>
+            <!-- <view class="tilte">网络新词{{index+1}}</view> -->
+            <view class="icon">
+              <image mode="heightFix" wx:if="{{item.w_type=='1'}}" src="/images/hot.png"></image>
+            </view>
+          </view>
+          <view class="idiom-content">
+            <text>{{item.w_cn_interpre}}</text>
+            <!-- <text>这是网络新词的意思111111111111111111111111111111</text> -->
+          </view>
+        </view>
+        <view class="card-item-icon">
+          <navigator open-type="switchTab" url="/pages/GameChoosePage/GameChoosePage">
+            <image mode="heightFix" src="/images/icon.png"></image>
+          </navigator>
+        </view>
+  </navigator>
+</scroll-view>

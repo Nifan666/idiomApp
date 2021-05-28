@@ -1,0 +1,120 @@
+<!--pages/IdiomDictPage/IdiomDictPage.wxml-->
+<!-- 背景图 -->
+<view>
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
+</view>
+
+
+<view  class="phone-bar"></view>
+   
+<!--顶部选项卡-->
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+
+<!-- 搜索框 -->
+<view class="search-box" wx:if="{{currentTab==1}}" >
+  <view class="total_btn" wx:if="{{!isTotalNet}}" bindtap="getTotalNet">全部</view>
+  <view class="total_btn" wx:else bindtap="getRandomNet">热门</view>
+  
+  <view style="width:80%"> 
+    <van-search
+      value="{{ value }}"
+      shape="round"
+      background="#EBE7DE"
+      maxlength="20"
+      bind:change="bindKeyInput"
+      bind:search="goToSearch"
+      show-action
+      bind:cancel="onCancel" 
+      placeholder="请输入搜索关键词"
+    />
+  </view>
+</view>
+<view class="search-box" wx:else >
+  <van-search
+      style="width:100%"
+      value="{{ value }}"
+      shape="round"
+      background="#EBE7DE"
+      maxlength="20"
+      bind:change="bindKeyInput"
+      bind:search="goToSearch"
+      show-action
+      bind:cancel="onCancel" 
+      placeholder="请输入搜索关键词"
+    />
+</view>
+<!-- 选项卡内容 -->
+<scroll-view style="height:77%" scroll-y="true">
+  <view class="box">
+    <!--选项1：传统成语-->
+    <loading wx:if="{{isLoading}}">
+      加载中..
+    </loading>
+    <view hidden="{{currentTab!==0}}" class="subject">
+      <navigator open-type="navigate" wx:if="{{!isSearch}}" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}" class="subject-item" wx:for="{{theme}}" wx:key="key" wx:for-item="item" data-name="{{index+1}}">
+      <!-- <navigator open-type="navigate" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}" bindtap="goToIdiomSubject" class="subject-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
+        <view class="img">
+          <image mode="widthFix" src="{{item.theme_pic}}"></image>
+        </view>
+        <view class="image-text">
+          <view>{{item.theme_name}}</view>
+          <!-- <view>主题{{index+1}}</view> -->
+        </view>
+      </navigator>
+
+      <navigator open-type="navigate" wx:if="{{isSearch}}" url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" wx:key="key" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{InternetNewWork}}"> 
+      <!-- <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?idiom_name={{index+1}}" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
+        <view class="card-item-text">
+          <view class="idiom-title">
+            <view class="tilte">{{item.wname}}</view>
+            <!-- <view class="tilte">网络新词{{index+1}}</view> -->
+            <view class="icon">
+              <image mode="heightFix" wx:if="{{item.w_type=='1'}}" src="/images/hot.png"></image>
+            </view>
+          </view>
+          <view class="idiom-content">
+            <text>{{item.w_cn_interpre}}</text>
+            <!-- <text>这是网络新词的意思111111111111111111111111111111</text> -->
+          </view>
+        </view>
+        <view class="card-item-icon">
+          <navigator open-type="switchTab" url="/pages/GameChoosePage/GameChoosePage">
+            <image mode="heightFix" src="/images/icon.png"></image>
+          </navigator>
+        </view>
+      </navigator>
+    </view>
+    
+    <!-- 选项2：网络新词 -->
+    <view hidden="{{currentTab!=1}}" class="box-content">
+      <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?wid={{item.wid}}" wx:for="{{InternetNewWork}}" class="card-item" wx:key="key" wx:for="{{InternetNewWork}}"> 
+      <!-- <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?idiom_name={{index+1}}" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
+        <view class="card-item-text">
+          <view class="idiom-title">
+            <view class="tilte">{{item.wname}}</view>
+            <!-- <view class="tilte">网络新词{{index+1}}</view> -->
+            <view class="icon">
+              <image mode="heightFix" wx:if="{{!isTotalNet && !isSearch}}" src="{{imgUrl}}/global/hot.png"></image>
+              <image mode="heightFix" wx:else src="{{imgUrl}}/global/net.png"></image>
+            </view>
+          </view>
+          <view class="idiom-content">
+            <text>{{item.w_cn_interpre}}</text>
+            <!-- <text>这是网络新词的意思111111111111111111111111111111</text> -->
+          </view>
+        </view>
+        <view class="card-item-icon">
+          <navigator open-type="switchTab" url="/pages/GameChoosePage/GameChoosePage">
+            <image mode="heightFix" src="/images/icon.png"></image>
+          </navigator>
+        </view>
+      </navigator>
+    </view>
+      
+  </view>
+</scroll-view>
+  
+
+

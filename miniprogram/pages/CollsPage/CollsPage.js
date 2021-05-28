@@ -10,7 +10,9 @@ Page({
     value: '',
     colls:[],
     isSearch:false,
-    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956"
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
+    isLoading:true,
+    imgNum:0
   },
 
   /**
@@ -21,8 +23,22 @@ Page({
       delta: 1
     })
   },
-  onCancel:function(){
-
+  imageLoad:function(){
+    this.data.imgNum++
+    console.log(this.data.imgNum)
+    if(this.data.imgNum == this.data.colls.length*2){
+      this.setData({
+        isLoading:false
+      })
+    }
+  },
+  onCancel:function(e){
+    if(this.data.isSearch==false){
+      return ;
+    }
+    this.setData({
+      isLoading:true
+    })
     var that = this
     wx.cloud.callFunction({
       name:'con2tb',
@@ -40,17 +56,39 @@ Page({
         }
       },
       success:res=>{
-       console.log(res.result.list)
        that.setData({
-        colls:res.result.list
+        colls:res.result.list,
+        isSearch:false 
        })
       }
     })
   },
   onLoad: function (options) {
     //查询收藏的物品
-    
-    this.onCancel()
+    var that = this
+    wx.cloud.callFunction({
+      name:'con2tb',
+      data:{
+        collection:'fav_tb',
+        from:'word_tb',
+        localField:'wid',
+        foreignField:'wid',
+        as:'item',
+        match:{
+          uid:App.globalData._openid
+        },
+        sort:{
+          add_time: -1
+        }
+      },
+      success:res=>{
+       that.setData({
+        colls:res.result.list,
+        isSearch:false
+       })
+      }
+    })
+  
   },
   onChange(e) {
     this.setData({
@@ -59,9 +97,16 @@ Page({
     // console.log(e.detail)
   },
   onSearch() {
+    this.setData({
+      isLoading:true
+    })
     var that = this
-    console.log('搜索' + this.data.value);
+    // console.log('搜索' + this.data.value);
     var key = this.data.value
+    if(key=="" || key==null){
+      this.onCancel()
+      return ;
+    }
     //先查找一波
     wx.cloud.callFunction({
       name:'con2tb',
@@ -82,11 +127,12 @@ Page({
         }
       },
       success:res=>{
-       console.log(res)
+      //  console.log(res)
        var ans = []
        var list = res.result.list
        for(var i=0;i<list.length;i++){
          if(list[i].item.length>0){
+          
             var item = list[i].item[0]
             // console.log(item)
             if(item.uid == App.globalData._openid){
@@ -95,9 +141,11 @@ Page({
             }
          }
        }
+      //  console.log("ans")
+      //  console.log(ans)
        that.setData({
         colls:ans,
-        isSearch:true
+        isSearch:true 
        })
       }
     })

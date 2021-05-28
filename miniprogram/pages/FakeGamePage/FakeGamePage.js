@@ -72,7 +72,7 @@ Page({
         num:num+1
       })
     }
-    if(this.data.num == 1){
+    if(this.data.num == 20){
       // console.log("通关完成,跳转到结束页面") 
       //等待2s钟
       var time = setTimeout(function () {

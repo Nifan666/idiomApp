@@ -1,6 +1,14 @@
 {
   "pages": [
     
+    "pages/IntroPage/IntroPage",
+    "pages/ScanPage/ScanPage",
+    "pages/HomePage/HomePage",
+    "pages/IdiomDictPage/IdiomDictPage",
+    "pages/IdiomDictTab1/IdiomDictTab1",
+    "pages/DictTab1List/DictTab1List",
+    "pages/DictConInternet/DictConInternet",
+    "pages/DictConClassical/DictConClassical",
     "pages/index/index","pages/CollsPage/CollsPage",
     "pages/UserInfoPage/UserInfoPage",
     "pages/RankPage/RankPage",
@@ -12,7 +20,6 @@
     "pages/EngGamePage/EngGamePage",
     "pages/CnGamePage/CnGamePage",
     "pages/GameEndPage/GameEndPage",
-    
     "pages/logs/logs" 
   ],
   "window": {
@@ -26,17 +33,23 @@
     "selectedColor":"#d8a76f",
     "list":[
       {
-        "pagePath":"pages/index/index",
+        "pagePath":"pages/HomePage/HomePage",
         "text":"首页",
         "iconPath":"/images/home_tab.png",
         "selectedIconPath":"/images/home_tab_sl.png"
       },
       {
-        "pagePath":"pages/GameChoosePage/GameChoosePage",
+        "pagePath":"pages/IdiomDictPage/IdiomDictPage",
         "text":"群词荟萃",
         "iconPath":"/images/words_tab.png",
         "selectedIconPath":"/images/words_tab_sl.png"
         
+      },
+      {
+        "pagePath":"pages/ScanPage/ScanPage",
+        "text":"识别",
+        "iconPath":"/images/search.png",
+        "selectedIconPath":"/images/search_sl.png"
       },
       {
         "pagePath":"pages/GameChoosePage/GameChoosePage",

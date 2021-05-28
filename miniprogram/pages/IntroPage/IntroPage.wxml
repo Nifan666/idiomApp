@@ -1,0 +1,45 @@
+<view wx:if="{{!isShow}}" class="center all_page">
+  <van-loading size="24px"/>
+</view>
+<view class="content" hidden="{{!isShow}}">
+	<!--image文件夹下的bg-->
+  <view  >
+    <image class="bg-image" bindload="imageLoad" mode="aspectFill" src="{{imgUrl}}/IntroPage/Introbg.jpg"></image> 
+    <view class="title">
+      <van-image width="45" height="130" bindload="imageLoad" fit="cover" src="{{imgUrl}}/IntroPage/title.png" />
+    </view>
+    <view class="con">
+      <view class="row center height45">
+        <van-image round width="140" height="140" bindload="imageLoad" fit="cover" class="center_img" src="{{imgUrl}}/IntroPage/center.jpg" />
+      </view>
+      <view class="center flex-row margin-top2">
+        <view class="left_text">
+          有一种
+        </view>
+        <view class=" right-text margin-left5">
+          <view class="round-word center">文</view>
+          <view class="round-word center margin-top25">化</view>
+        </view>
+      </view>
+      <view class="row center margin-top2">
+        <view class="down-box">
+          <view class="down_text">
+            文字为布
+          </view>
+          <view class="down_text">
+            故事做笔
+          </view>
+          <view class="down_text">
+            传情达意
+          </view>
+          <view class="down_text">
+            流于世间
+          </view>
+        </view>
+      </view>
+      <view class="center row margin-top2">
+        <van-image width="150" height="55" fit="cover" bindtap="ToIndex" bindload="imageLoad"  src="{{imgUrl}}/IntroPage/start_btn.png" />
+      </view>
+    </view>
+  </view>
+</view>

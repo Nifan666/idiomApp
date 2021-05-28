@@ -1,0 +1,113 @@
+
+  <view class="center">
+    <text class="topText">每日推荐</text>
+  </view>
+  <view class="swiper">
+
+  <swiper indicator-dots indicator-active-color="#d08989" indicator-color="#c0c0c0" previous-margin="60rpx" next-margin="60rpx" bindchange="bannerSwiper" >
+        <!-- 每日推荐词汇 -->
+        <swiper-item class="item" wx:for="{{bannerData}}" wx:key="index" >
+          <view class="swiper-item">
+            <view class='boxItem column'>
+
+              <!-- 卡牌 -->
+              <view class="flipGroup  {{ item.isOpenFilp ? 'on':''}}" catchtap='switchFlip' data-msg='{{item}}'  data-index='{{ index }}'>
+                <view class="flipBox" >
+                  <!-- 正面内容 -->
+                  <view class="sideWrap front">
+                    <!-- 卡片 -->
+                    <view class='posterGroup'>
+                      <view class='imgWrap'>
+                      <!-- <scroll-view scroll-y="true" style="height: 850rpx;"> -->
+                        <image class='img'  src="{{item.wpic}}" mode="aspectFill"></image>
+                        <view class='detailBox'>
+                        <view class='mSmall f10 relative mb20'>{{ item.wpinyin }}</view>
+                        <view class='mSmall f14 relative mb20'>{{ item.wname }}</view>
+                        <!-- <view>
+                          <text style="color:red">昨天发布的《关于开展2021在校生学情调查的通知》，学校教务处那边是有各学院提交的数据统计，请各班同学利用课间时间完成，不然后续提交的统计数据不足还会要求再次提交的。昨天发布的《关于开展2021在校生学情调查的通知》，学校教务处那边是有各学院提交的数据统计，请各班同学利用课间时间完成，不然后续提交的统计数据不足还会要求再次提交的。昨天发布的《关于开展2021在校生学情调查的通知》，学校教务处那边是有各学院提交的数据统计，请各班同学利用课间时间完成，不然后续提交的统计数据不足还会要求再次提交的。</text>
+                        </view> -->
+                        </view>
+                      <!-- </scroll-view> -->
+                      </view>
+                    </view>
+                    <!-- / 卡片 -->
+                  </view>
+                  <!-- 背面内容 -->
+                  <view class="sideWrap back" >
+                    <!-- detail -->
+                    <!-- 问题一：scroll-view无法实现其效果 -->
+                    <!-- <scroll-view scroll-y="true" style="height: 850rpx;"> -->
+                      <view class='backGroup'>
+                        <image class='img' style="max-height:600rpx" src="{{item.wpic}}" mode="widthFix"></image>
+                        <view class='textWrap'>
+                          <image class='iconFlag' src="{{ iconFlag }}" mode="widthFix"></image>
+                          <view class='mt10'>
+                            <text class='mTitle cf45 mb40' space="ensp">    {{ item.w_cn_interpre }}</text>
+                          </view>
+                          <view class='mt10'>
+                            <text class='mTitle cf45 mb40' space="ensp">    {{ item.w_eng_interpre }}</text>
+                          </view>
+                          <!-- <view>
+                            <text style="color:red">昨天发布的《关于开展2021在校生学情调查的通知》，学校教务处那边是有各学院提交的数据统计，请各班同学利用课间时间完成，不然后续提交的统计数据不足还会要求再次提交的。昨天发布的《关于开展2021在校生学情调查的通知》，学校教务处那边是有各学院提交的数据统计，请各班同学利用课间时间完成，不然后续提交的统计数据不足还会要求再次提交的。昨天发布的《关于开展2021在校生学情调查的通知》，学校教务处那边是有各学院提交的数据统计，请各班同学利用课间时间完成，不然后续提交的统计数据不足还会要求再次提交的。</text>
+                          </view> -->
+                        </view>
+                      </view>
+                    <!-- </scroll-view> -->
+
+                    <view class='otherInfo'>
+                      <view class='idiomTitle'>
+                         {{ item.wname }} 
+                        <text class='score'>{{ item.word_type }}</text>
+                      </view>
+                    </view>
+
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </swiper-item>
+        
+        <!-- 最后一张跳转 -->
+        <swiper-item class="item">
+          <view class="swiper-item">
+            <view class='boxItem column'>
+              <!-- 卡牌 -->
+              <view class="flipGroup" catchtap='toThemePage'>
+                <view class="flipBox">
+                  <view class="sideWrap front">
+                    <!-- 卡片 -->
+                    <view class='posterGroup'>
+                      <view class='imgWrap'>
+                        <image class='img' src="{{last_wpic}}" mode="aspectFill"></image>
+                        <view class='detailBox'>
+                          <view class='mSmall f14 relative mb20'>{{last_title}}</view>
+                          <view class='mSmall relative'>{{last_detail}}</view>
+                        </view>
+                      </view>
+                    </view>
+                    <!-- / 卡片 -->
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </swiper-item>
+
+    </swiper>
+  </view>
+
+<!-- 海报背景 -->
+<view class='poster' wx:if="{{bannerCurrent!=5}}">
+  <image class='bgImg' src="{{ bannerData[bannerCurrent].wpic }}" mode="aspectFill"></image>
+  <!-- <image class='bgImg' src="{{ bannerData[bannerCurrent].wpic }}"></image> -->
+  <view class='cover'></view>
+</view>
+<!-- 跳转的海报背景 -->
+<view class='poster' wx:if="{{bannerCurrent==5}}">
+  <image class='bgImg' src="{{ last_wpic }}" mode="aspectFill"></image>
+  <!-- <image class='bgImg' src="{{ last_wpic }}"></image> -->
+  <view class='cover'></view>
+</view>
+

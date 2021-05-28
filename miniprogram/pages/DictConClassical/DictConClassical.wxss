@@ -1,0 +1,185 @@
+/* pages/DictConClassical/DictConClassical.wxss */
+
+.content{
+  width: 100%;
+  height: 100%;
+  /* border: 2rpx solid red ; */
+  position: absolute;
+}
+.back-line{
+  width: 100%;
+  height: 7%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  position: relative; 
+  justify-content: space-around;
+}
+
+.return{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  left: 3%;
+}
+.starbox{
+  width: 100%;
+  height: 30rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-label{
+  width: 100%;
+  height: 46%;
+  position: relative;
+}
+
+.box-content{
+  width: 100%;
+  height: 38%;
+  position: relative;
+  margin-top: 10rpx;
+}
+
+.content .title{
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+  /* border: 1rpx solid blue; */
+  margin-bottom: 20rpx;
+}
+
+.box-label .img{
+  height: 390rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1rpx solid rgb(49, 49, 49); */
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 1em;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.content .icon{
+  margin-top: 10rpx;  
+  width: 100%;
+  padding: 0 15%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border:2rpx solid red; */
+  text-align: center;
+}
+
+.icon-item{
+  width: 95rpx;
+  height: 95rpx;
+  /* border: 1px solid rgb(16, 252, 8); */
+  background-color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 5rpx;
+  box-sizing: border-box;
+  position: relative;
+
+  box-sizing: border-box;
+  border-radius: 50em;
+  overflow: hidden;
+}
+
+.icon-item .image-text{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: bold;
+}
+/* 标签卡内容样式 */
+.box{
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* border: 2rpx solid blue; */
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.idiom{
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.idiom-content{
+  box-sizing: border-box;
+  color: #666;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  line-height: 40rpx;
+  letter-spacing: 2rpx;
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:10; 
+}
+
+.idiom-content2{
+  
+  box-sizing: border-box;
+  color: #666;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  line-height: 40rpx;
+  letter-spacing: 2rpx;
+  display: -webkit-box ;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:100; 
+}
+
+.tle{
+  font-weight: bold;
+  font-size: large;
+  margin-right: 20rpx;
+}
+
+.con{
+  padding: 0 0;
+  /* 首行缩进 */
+  /* padding-left: 2rem; */
+  
+}

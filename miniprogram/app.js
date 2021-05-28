@@ -1,6 +1,7 @@
 // app.js
 App({
   onLaunch() {
+    wx.hideShareMenu()
     var that = this
     // 展示本地存储能力
     wx.cloud.init({

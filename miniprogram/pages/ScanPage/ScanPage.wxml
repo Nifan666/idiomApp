@@ -1,0 +1,63 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 -->
+<wxs src="../../wxs/strUtil.wxs" module="tools" />
+<view>
+  <view class="con">
+    <view  class="phone-bar"></view>
+    
+    <view wx:if="{{!isScan}}" >
+      <view class="center">
+        <text class="topText" >成语识别</text>
+      </view>
+      <view class="all_page_cover con-center flex-col" hidden="{{!isLoadedScan}}">
+        <view class="box" style="margin-top:-20%">
+          <van-image width="200"  height="400"  bindload="imageLoad"  fit="cover" src="{{imgUrl}}/Scan/scan.png" />
+        </view>
+        <view class="row center_wss">
+          <van-button round type="default" bind:click="doUpload">开启识别</van-button>
+          <!-- <view class="text center_wss">开启识别</view> -->
+        </view>
+      </view>
+    </view>
+    <view class="result" wx:else>
+       
+      <view class="row center_wss reScan">
+        <van-button round type="default" bind:click="reScan">重新识别</van-button>
+        <!-- <view class="text center_wss">开启识别</view> -->
+      </view>
+      <view class="res_box">
+        <view class="con"> 
+          <scroll-view scroll-y="true" class="scroll-box">
+            <view style="height:{{190*num}}rpx;padding-left:3%;padding-right:3%" >
+              <view   wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:220rpx;margin-bottom:40rpx;">
+                <navigator  wx:if="{{item.w_type=='0'}}"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
+                  <van-image width="80" height="80" fit="cover" src="{{imgUrl}}/{{item.wpic}}" />
+                  <view class="coll-item-text"> 
+                    <view class="name" >{{item.wname}}</view>
+                    <view class="detail">{{tools.subStr(item.w_cn_interpre)}}</view>
+                  </view>
+                  <view class="con-center">
+                    <van-image width="50" height="50" fit="cover" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
+                  </view>
+                </navigator>
+                <navigator  wx:else  url="/pages/DictConInternet/DictConInternet?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
+                   
+                  <van-image width="80" height="80" fit="cover"  src="{{imgUrl}}/{{item.wpic}}" />
+                  <view class="coll-item-text"> 
+                    <view class="name" >{{item.wname}}</view>
+                    <view class="detail" >{{tools.subStr(item.w_cn_interpre)}}</view>
+                  </view>
+                  <view class="con-center">
+                    <van-image width="50" height="50" fit="cover" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
+                  </view>
+                </navigator>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+</view>
+

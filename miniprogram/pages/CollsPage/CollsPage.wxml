@@ -2,12 +2,12 @@
 <!-- // wxml文件 -->
 <wxs src="../../wxs/strUtil.wxs" module="tools" />
 <view>
-  <image class="bg-image" mode="aspectFill" src="/images/user/user_bg.png"></image> 
-  <view class="con">
+  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/global/col_bg.png"></image> 
+  
     <view  class="phone-bar"></view>
     <view class="back-line">
       <navigator url="/pages/GameChoosePage/GameChoosePage">
-        <image bindtap="return_func" class="return" src="/images/return.png"></image>
+        <image bindtap="return_func" class="return" src="{{imgUrl}}/global/return.png"></image>
         <view class="title">我的收藏</view>
       </navigator>
     </view>
@@ -18,24 +18,44 @@
       maxlength="20"
       bind:change="onChange"
       bind:search="onSearch"
-      bind:cancel="onCancel"
+      show-action
+      bind:cancel="onCancel" 
       placeholder="请输入搜索关键词"
     />
-    <scroll-view scroll-y="true" class="scroll-box">
-      <view style="height:{{190*num}}rpx;padding:3%" >
-        <view class="coll-item-box con-center" wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:180rpx;margin-top:10rpx;background-color:white; padding:2%">
-          
-          <van-image width="80" height="80" fit="cover" src="{{imgUrl}}/{{item.item[0].wpic}}" />
-          <view class="coll-item-text">
-            <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
-            <view class="name" wx:else>{{item.wname}}</view>
-            
-            <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
-            <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
-          </view>
-          <view class="con-center">
-            <van-image width="50" height="50" fit="cover" src="cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/UserInfoPage/r_arrow.png" />
-          </view>
+    <loading wx:if="{{isLoading}}">
+      加载中..
+    </loading>
+    <view class="con"> 
+    <scroll-view scroll-y="true" class="scroll-box" hidden="{{isLoading}}">
+      <view style="height:{{190*num}}rpx;padding-left:3%;padding-right:3%" >
+        <view   wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:220rpx;margin-bottom:40rpx;">
+          <navigator  wx:if="{{item.item[0].w_type=='0'}}"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
+            <van-image width="80" height="80" fit="cover" bindload="imageLoad" src="{{imgUrl}}/{{item.item[0].wpic}}" />
+            <view class="coll-item-text">
+              <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
+              <view class="name" wx:else>{{item.wname}}</view>
+              
+              <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
+              <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
+            </view>
+            <view class="con-center">
+              <van-image width="50" height="50" fit="cover" bindload="imageLoad" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
+            </view>
+          </navigator>
+          <navigator  wx:else  url="/pages/DictConInternet/DictConInternet?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
+            <van-image width="80" height="80" fit="cover" bindload="imageLoad" wx:if="{{!isSearch}}" src="{{imgUrl}}/{{item.item[0].wpic}}" />
+            <van-image width="80" height="80" fit="cover" bindload="imageLoad" wx:else src="{{imgUrl}}/{{item.wpic}}" />
+            <view class="coll-item-text">
+              <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
+              <view class="name" wx:else>{{item.wname}}</view>
+              
+              <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
+              <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
+            </view>
+            <view class="con-center">
+              <van-image width="50" height="50" fit="cover" bindload="imageLoad" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
+            </view>
+          </navigator>
         </view>
       </view>
     </scroll-view>
