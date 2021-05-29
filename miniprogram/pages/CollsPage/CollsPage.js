@@ -25,8 +25,10 @@ Page({
   },
   imageLoad:function(){
     this.data.imgNum++
-    console.log(this.data.imgNum)
-    if(this.data.imgNum == this.data.colls.length*2){
+    // console.log(this.data.imgNum)
+   
+    if(this.data.imgNum >= this.data.colls.length*2){
+      // console.log("图片总个数:"+this.data.colls.length*2)
       this.setData({
         isLoading:false
       })
@@ -34,6 +36,9 @@ Page({
   },
   onCancel:function(e){
     if(this.data.isSearch==false){
+      this.setData({
+        isLoading:false
+      })
       return ;
     }
     this.setData({
@@ -56,6 +61,15 @@ Page({
         }
       },
       success:res=>{
+        // console.log(res)
+        if(res.result.list.length==0){
+          that.setData({
+            colls:[],
+            isSearch:false,
+            isLoading:false
+          })
+          return ;
+        }
        that.setData({
         colls:res.result.list,
         isSearch:false 
@@ -82,10 +96,18 @@ Page({
         }
       },
       success:res=>{
-       that.setData({
-        colls:res.result.list,
-        isSearch:false
-       })
+        if(res.result.list.length==0){
+          that.setData({
+            colls:res.result.list,
+            isSearch:false,
+            isLoading:false
+          })
+        }else{
+          that.setData({
+            colls:res.result.list,
+            isSearch:false
+           })
+        }
       }
     })
   
@@ -101,9 +123,10 @@ Page({
       isLoading:true
     })
     var that = this
-    // console.log('搜索' + this.data.value);
+    
     var key = this.data.value
-    if(key=="" || key==null){
+    if(key=="" || key==null || key.length==0){
+      // console.log('搜索' + this.data.value);
       this.onCancel()
       return ;
     }
@@ -126,27 +149,31 @@ Page({
           add_time: -1
         }
       },
-      success:res=>{
-      //  console.log(res)
+      success:res=>{ 
        var ans = []
        var list = res.result.list
        for(var i=0;i<list.length;i++){
          if(list[i].item.length>0){
-          
-            var item = list[i].item[0]
-            // console.log(item)
+            var item = list[i].item[0] 
             if(item.uid == App.globalData._openid){
-              ans.push(list[i])
-              // console.log(list[i].w_cn_interpre)
+              ans.push(list[i]) 
             }
          }
-       }
-      //  console.log("ans")
+       } 
       //  console.log(ans)
+       if(ans.length==0){
+         that.setData({
+          colls:[],
+          isSearch:true,
+          isLoading:false
+         })
+         return ;
+       }
        that.setData({
         colls:ans,
-        isSearch:true 
+        isSearch:true,
        })
+
       }
     })
   

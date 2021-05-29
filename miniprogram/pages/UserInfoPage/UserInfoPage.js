@@ -1,5 +1,6 @@
 // pages/UserInfoPage/UserInfoPage.js
 var db = wx.cloud.database();
+const App = getApp();
 Page({
 
   /**
@@ -12,16 +13,19 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false, 
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') //如需尝试获取用户信息可改为false
+    canIUseOpenData: false //如需尝试获取用户信息可改为false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      userinfo:wx.getStorageSync('user')
-    })
+    if(wx.getStorageSync('notFirst')!=null){
+      this.setData({
+        userinfo:wx.getStorageSync('user'),
+        canIUseOpenData:wx.getStorageSync('notFirst')
+      })
+    }
   },
 
   /**
@@ -95,18 +99,51 @@ Page({
     //先获取openid
     
     //更新头像
-    wx.cloud.callFunction({
-      name: 'login',
-      complete: res => { 
+    if(e.detail.userInfo==null){
+      return;
+    }
+
+    //此时可能之前已经更新过了
+    db.collection('user_tb').aggregate()
+    .match({
+      uid:App.globalData._openid
+    }).end().then(  res => { 
+      if(res.list.length>0){
+        //如果之前更新过
         db.collection('user_tb').where({
-          _openid:res.result.openid
+          uid:App.globalData._openid,
         }).update({
           data: {
             ava_url: e.detail.userInfo.avatarUrl
+          },
+          success: function(res) {
+            console.log(res)
+            wx.setStorageSync('notFirst', true)
+            wx.setStorageSync('user',res)
           }
+        }) 
+      }else{
+        //没有放入过数据库，就添加到数据库内
+        //如果同意就获取当前的 用户的信息，并且把 第一次登入 变成 第二次登录
+        console.log(App.globalData._openid)
+        db.collection('user_tb').add({
+          // data 字段表示需新增的 JSON 数据
+          data: {
+            uid:App.globalData._openid,
+            ava_url:e.detail.userInfo.avatarUrl,
+            medal_num:0
+          }
+        }).then(res=>{
+          console.log(res)
+            wx.setStorageSync('notFirst', true)
+            wx.setStorageSync('user',res)
         })
       }
-     }) 
+    })
+
+    
+    
+    
 
 
     // console.log(e.detail.userInfo.avatarUrl)

@@ -47,6 +47,13 @@ Page({
         // console.log(res)
         if(res.list.length>0){
           // console.log(res.list[0])
+          if(res.list[0].medal_num==0){
+            that.setData({
+              medals:[],
+              medal_num:0,
+              isLoading:false
+            })
+          }
           db.collection('medal_tb').aggregate()
           .match({
             mid:_.lte(parseInt(res.list[0].medal_num))
@@ -58,6 +65,12 @@ Page({
               medals:res.list,
               medal_num:res.list.length
             })
+          })
+        }else{
+          that.setData({
+            medals:[],
+            medal_num:0,
+            isLoading:false
           })
         }
     })

@@ -1,7 +1,9 @@
 // pages/ScanPage/ScanPage.js
-const db = wx.cloud.database();
+const db = wx.cloud.database(); 
+// var plugin = requirePlugin("myPlugin");
+const App = getApp();
+// 机器人ID ：effectdff6d
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -16,12 +18,22 @@ Page({
     //获取拍照权限
 
   },
+  // onLaunch: function() {
+  //   console.log(plugin, "+++");
+  //   plugin.init({
+  //       appid: "P5Ot9PHJDechCYqDFAW1AiK6OtG3Ja", //小程序示例账户，仅供学习和参考
+  //       success: () => {},
+  //       fail: error => {}
+  //   });
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
      this.getBaiduToken()
+    // this.getData()
   },
+   
   reScan:function(){
     this.setData({
       isScan:false

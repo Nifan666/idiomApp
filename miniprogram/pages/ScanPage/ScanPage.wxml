@@ -15,7 +15,7 @@
         </view>
         <view class="row center_wss">
           <van-button round type="default" bind:click="doUpload">开启识别</van-button>
-          <!-- <view class="text center_wss">开启识别</view> -->
+          <!-- <van-button round type="default" bind:click="test">测试</van-button> -->
         </view>
       </view>
     </view>

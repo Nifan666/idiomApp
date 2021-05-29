@@ -24,45 +24,64 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    //查询用户排名
     var _ = db.command
     var that = this
     var openid = App.globalData._openid;
-    //只取前4个
+    var user = null
+
+    //先查询是否有成绩
     db.collection('user_tb').aggregate()
-    .sort({
-      medal_num: -1 
+    .match({
+      _openid: App.globalData._openid
     })
     .limit(5)
-    .end().then(  res => {  
-      // console.log(res.list)
-      //如果前4名当中没有本人，就添加本人
-      //如果前5名有本人，就放本人，不操作
-      // that.setData({
-      //   users:res.list
-      // })
-      // console.log(res.list)
-      var users = res.list
-      // //先比较前5人内是否有自己
-      var isTop5 = false;
-      for(var i=0;i<users.length;i++){
-        if(users[i]._openid == openid){
-          //不处理
-          isTop5=true
-        }
-      }
+    .end().then(  res => { 
+      if(res.list.length==0 || res.list[0].medal_num==0){
+        //直接查出前五名高手
+        db.collection('user_tb').aggregate()
+        .sort({
+          medal_num: -1 
+        })
+        .limit(5)
+        .end().then(  res => { 
+          var users = res.list
 
-      //不是前5，就将第5个人替换成本人，顺便表示本人排名
-      if(!isTop5){
-        const _ = db.command
-        console.log(isTop5)
-        //先查本人的金牌数，再统计比本人金牌数多的
-        db.collection('user_tb').where({
-          _openid: openid
-        }).get({
-          success: function(res) {
-            
+          var lis = []
+          for(var i=0;i<users.length;i++){
+            if(users[i].medal_num==0){
+              break;
+            }
+            lis.push(users[i])
+          }
+          that.setData({
+            users:lis, 
+            openid:App.globalData._openid
+          }) 
+        })
+      }else{
+        user = res.list[0]
+        //需要处理，查询用户排名
+        //只取前4个作为其他用户排名
+        db.collection('user_tb').aggregate()
+        .sort({
+          medal_num: -1 
+        })
+        .limit(5)
+        .end().then(  res => {  
+          //如果前4名当中没有本人，就添加本人
+          //如果前5名有本人，就放本人，不操作
+          var users = res.list
+          // //先比较前5人内是否有自己
+          var isTop5 = false;
+          for(var i=0;i<users.length;i++){
+            if(users[i]._openid == openid){
+              //不处理
+              isTop5=true
+            }
+          }
+          //不是前5，就将第5个人替换成本人，顺便表示本人排名
+          if(!isTop5){
+            //先查本人的金牌数，再统计比本人金牌数多的
             var user = res.data[0]
             //把排名呈现出来
             //直接插入 + 本人总排名
@@ -76,21 +95,26 @@ Page({
             db.collection('user_tb').where({
               medal_num:_.gt(parseInt(user.medal_num))
             }).count( ).then(res=>{
-                that.setData({
-                  users:users,
-                  rank_last:res.total,
-                  openid:App.globalData._openid
-                }) 
+              that.setData({
+                users:users,
+                rank_last:res.total,
+                openid:App.globalData._openid
+              }) 
             })
+          }else{
+            //是前五就直接这样
+            that.setData({
+              users:users,
+              openid:App.globalData._openid
+            })    
           }
         })
-      }else{
-        that.setData({
-          users:users,
-          openid:App.globalData._openid
-        })    
+
+
       }
     })
+
+    
     
 
   },

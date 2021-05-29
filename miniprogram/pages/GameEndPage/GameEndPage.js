@@ -1,5 +1,6 @@
 // pages/GameEndPage/GameEndPage.js
 var db = wx.cloud.database();
+const App = getApp();
 Page({
 
   /**
@@ -23,79 +24,82 @@ Page({
     //获取图片url
     let that = this
     var user_openid = null;
-    wx.cloud.callFunction({
-      name: 'login',
-      complete: res => {
-        
-       //oAU-j4oGWKda67QiUevq0ZbB8dKU
-       //查询到openid   ->联表查询
-       that.setData({
-        user_openid:res.result.openid
-       })
-      // console.log("opendid"+res.result.openid)
-       wx.cloud.callFunction({
-        name:'select_mpic',
-        data:{
-          collection:'user_tb',
-          from:'medal_tb',
-          localField:'medal_num',
-          foreignField:'mid',
-          as:'medeldetail',
-          match:{_openid: res.result.openid}
-        },
-        success:res=>{
-          //如果当前的res.result.list[0]==null
-          // console.log(res.result.list[0].medeldetail[0].mpic)
-          // that.setData({
-          //   medal:res.result.list[0].medeldetail[0]
-          // }) 
-          var lis = res.result.list
-          var tmedal = that.data.medal
-          if(lis[0].medal_num==0){
+    //先查询是否有该用户
+    db.collection('user_tb').aggregate()
+    .match({
+      _openid:App.globalData._openid
+    }).end().then(  res => { 
+      if(res.list.length==0){
+        // console.log("插入")
+        //插入当前的成绩 --------------------------------------  未作--------------------------------------
+        db.collection('user_tb').add({
+          // data 字段表示需新增的 JSON 数据
+          data: {
+            uid:App.globalData._openid,
+            ava_url:"",
+            medal_num:1
+          },
+          success: function(res) {
+            // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+            // console.log(res)
+            var tmedal = that.data.medal
             tmedal["mpic"] ="/Medal_pic/medal1.jpg"
             that.setData({
               medal:tmedal
             })
+          }
+        })
+      }else{
+        //更新当前的成绩,查询 勋章 + 更新成绩
+        var tmedal = that.data.medal
+        //如果本来成绩为0，就更新为1
+        if(res.list[0].medel_num==0){
+          tmedal["mpic"] ="/Medal_pic/medal1.jpg"
+          that.setData({
+            medal:tmedal
+          })
+          db.collection('user_tb').where({
+            _openid: that.data.user_openid
+          }).update({ 
+            data: {
+              medal_num:1
+            },
+            success: function(res) {
+              
+            }
+          })
+        }else{
+          var tmedal_num = parseInt(res.list[0].medal_num)+1
+          // console.log(tmedal_num)
+          //如果勋章大于10，就抛弃 -- 不再更新
+          if(tmedal_num>10){
+            tmedal["mpic"] ="/Medal_pic/medal"+10+".jpg"
+            that.setData({
+              medal:tmedal,
+              isCollAll:true
+            })
           }else{
-             //更新
-            var tmedal_num = parseInt(lis[0].medal_num)+1
-            console.log(tmedal_num)
-            //如果勋章大于10，就抛弃
-            if(tmedal_num>10){
-              tmedal["mpic"] ="/Medal_pic/medal"+10+".jpg"
-              that.setData({
-                medal:tmedal,
-                isCollAll:true
-              })
-  
-              }else{
-                tmedal_num = tmedal_num.toString()
-                db.collection('user_tb').where({
-                  _openid: that.data.user_openid
-                }).update({
-                  // data 传入需要局部更新的数据
-                  data: {
-                    // 表示将 done 字段置为 true
-                    medal_num: parseInt(tmedal_num)
-                  },
-                  success: function(res) {
-                    console.log("更新了")
-                    tmedal["mpic"] ="/Medal_pic/medal"+tmedal_num+".jpg"
-                   
-                    that.setData({
-                      medal:tmedal
-                    })
-                  }
+            //如果勋章不于10，就更新
+            db.collection('user_tb').where({
+              _openid: that.data.user_openid
+            }).update({ 
+              data: {
+                medal_num: parseInt(tmedal_num)
+              },
+              success: function(res) {
+                // console.log("更新了")
+                tmedal["mpic"] ="/Medal_pic/medal"+tmedal_num+".jpg"
+                that.setData({
+                  medal:tmedal
                 })
               }
+            })
           }
-          
         }
-      })
-
       }
-     }) 
-     
+    })
+
+    
   } ,
     
 isEmpty:function(str){

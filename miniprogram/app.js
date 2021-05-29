@@ -28,11 +28,18 @@ App({
          }) 
       }
     })
-
-
-    
-
   },
+  onShareAppMessage:function(res) {
+    if (res.from == 'button') {
+        console.log(res.target, res)
+    }
+    return {
+      title:'快来加入我吧',
+      path:'"pages/IntroPage/IntroPage",',//这里是被分享的人点击进来之后的页面
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/Scan/scan.png'//这里是图片的路径
+    }
+  }, 
+   
   globalData: {
     userInfo: null,
     _openid:null

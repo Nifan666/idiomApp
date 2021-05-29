@@ -2,6 +2,7 @@
   "pages": [
     
     "pages/IntroPage/IntroPage",
+    "pages/index/index",
     "pages/ScanPage/ScanPage",
     "pages/HomePage/HomePage",
     "pages/IdiomDictPage/IdiomDictPage",
@@ -9,7 +10,8 @@
     "pages/DictTab1List/DictTab1List",
     "pages/DictConInternet/DictConInternet",
     "pages/DictConClassical/DictConClassical",
-    "pages/index/index","pages/CollsPage/CollsPage",
+    "pages/GameEndPage/GameEndPage",
+    "pages/CollsPage/CollsPage",
     "pages/UserInfoPage/UserInfoPage",
     "pages/RankPage/RankPage",
     "pages/MedalsPage/MedalsPage",
@@ -19,7 +21,7 @@
     "pages/SceneGamePage/SceneGamePage",
     "pages/EngGamePage/EngGamePage",
     "pages/CnGamePage/CnGamePage",
-    "pages/GameEndPage/GameEndPage",
+    
     "pages/logs/logs" 
   ],
   "window": {
@@ -65,6 +67,6 @@
       }
     ]
   },
-
+  
   "sitemapLocation": "sitemap.json"
 }

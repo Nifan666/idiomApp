@@ -26,9 +26,9 @@ Page({
   },
   imageLoad:function(){
     this.data.imageLoadNum++
-    console.log(this.data.imageLoadNum)
+    // console.log(this.data.imageLoadNum)
     if(this.data.imageLoadNum==4){
-      console.log("加载完成")
+      // console.log("加载完成")
       this.setData({
         isShow:true
       })
