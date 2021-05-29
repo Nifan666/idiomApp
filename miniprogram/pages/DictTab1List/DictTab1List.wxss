@@ -1,5 +1,6 @@
 /* pages/DictTab1List/DictTab1List.wxss */
 /* 搜索框 */
+ 
 .search-box{
   width: 100%;
   position: relative;
@@ -8,11 +9,7 @@
   box-sizing: border-box;
   background-color: white;
 }
-.return{
-  width: 45rpx;
-  height: 45rpx; 
-  margin-left: 20px;
-}
+ 
 .page_row{  
  display: flex;  
  flex-direction: row;

@@ -16,11 +16,7 @@
  border: none;
  margin-left: 15rpx;
 }  
-.return{
-  width: 45rpx;
-  height: 45rpx; 
-  margin-left: 20px;
-}
+
 .searchcion {  
  margin: 10rpx 10rpx 10rpx 10rpx;  
  /* border: 1px solid red; */
@@ -348,3 +344,4 @@ page{
   font-size:9pt;
   color: #505050;
 }
+ 

@@ -20,10 +20,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(wx.getStorageSync('notFirst')!=null){
+    
+    if(!wx.getStorageSync('notFirst')){
       this.setData({
         userinfo:wx.getStorageSync('user'),
-        canIUseOpenData:wx.getStorageSync('notFirst')
+        canIUseOpenData:wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName')
       })
     }
   },
@@ -119,7 +120,11 @@ Page({
           success: function(res) {
             console.log(res)
             wx.setStorageSync('notFirst', true)
-            wx.setStorageSync('user',res)
+            wx.setStorageSync('user',e.detail.userInfo)
+            this.setData({
+              userinfo:e.detail.userInfo,
+              canIUseOpenData:wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName')
+            })
           }
         }) 
       }else{
@@ -137,6 +142,10 @@ Page({
           console.log(res)
             wx.setStorageSync('notFirst', true)
             wx.setStorageSync('user',res)
+            this.setData({
+              userinfo:e.detail.userInfo,
+              canIUseOpenData:wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName')
+            })
         })
       }
     })

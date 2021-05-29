@@ -6,7 +6,7 @@
 <view  class="phone-bar"></view>
 <!-- 搜索框 -->
 <view class="search-box">
-  <navigator url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
+  <navigator class="search-box" url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
     <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
   </navigator>
   <!-- <view class='page_row' bindtap="suo">   -->
