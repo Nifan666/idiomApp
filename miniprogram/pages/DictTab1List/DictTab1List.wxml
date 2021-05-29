@@ -4,26 +4,16 @@
   <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
 </view>
 <view  class="phone-bar"></view>
+
+<!-- 搜索框 -->
+<view class="back-line">
+  <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
+  <view class="title">{{son_theme_name}}</view>
+</view>
+
 <loading wx:if="{{isLoading}}">
     加载中..
 </loading>
-<!-- 搜索框 -->
-<view class="search-box">
-  <navigator class="search-box" url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
-    <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
-  </navigator>
-  <!-- <view class='page_row' bindtap="suo"> 
-    <view class="search">  
-      <view class="df search_arr">  
-        <icon class="searchcion" size='20' type='search'></icon>  
-         <input class="weui-input" type='text' placeholder="请输入要查找的成语" bindinput="bindKeyInput" confirm-type="search" bindconfirm="goToSearch" value="{{inputValue}}"  maxlength="10"/>
-      </view>  
-    </view>  
-    <view class='sousuo' bindtap="goToSearch">
-      <text class="txt">搜索</text>
-    </view>  
-  </view>   -->
-</view>
 <van-search
     value="{{ value }}"
     shape="round"
@@ -36,7 +26,10 @@
     placeholder="请输入搜索关键词"
   />    
 <!-- 分类列表 -->
-<scroll-view style="height:100%" scroll-y="true">
+<view wx:if="{{word_list.length==0 && isSearch}}" class="blank_box" >
+  <image class="blank_image" mode="aspectFill" src="/images/search_blank.png"></image>
+</view>
+<scroll-view style="height:100%" wx:if="{{!isSearch||word_list.length>0}}" scroll-y="true">
   <view class="box">
     <view class="box-content">
       <!-- <navigator open-type="navigate" url="/pages/DictConClassical/DictConClassical?idiom_name={{theme_son_id}}-{{index+1}}" class="card-item" wx:for="{{10}}" bindtap="goToIdiomCon" data-name="{{index+1}}"> -->

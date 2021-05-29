@@ -16,8 +16,15 @@ page{
 }
 .topText{ color: #000; font-weight: bold; font-size: large;}
 
-
-
+.blank_box{
+  width: 100%;
+  height: 80%;
+  position: relative;
+}
+.blank_image{
+  height: 100%;
+  width: 100%;
+}
 .bg-image
 { 
   width : 100%;

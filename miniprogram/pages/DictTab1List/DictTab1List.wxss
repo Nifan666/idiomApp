@@ -1,6 +1,20 @@
 /* pages/DictTab1List/DictTab1List.wxss */
 /* 搜索框 */
- 
+ /* pages/IdiomDictPage/IdiomDictPage.wxss */
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.blank_box{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.blank_image{
+  height: 100%;
+  width: 100%;
+}
 .search-box{
   width: 100%;
   position: relative;
@@ -9,7 +23,28 @@
   box-sizing: border-box;
   background-color: white;
 }
- 
+
+ /* 标题 + 返回按钮 */
+.back-line{
+  width: 100%;
+  height: 100rpx;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+  font-size: 13pt;
+}
+.phone-bar{ 
+  background-color: #eee9e3;
+}
+.return{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 10px;
+}
 .page_row{  
  display: flex;  
  flex-direction: row;

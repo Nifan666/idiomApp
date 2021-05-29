@@ -12,7 +12,8 @@ Page({
     son_theme: [],
     imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
     isSearch:false,
-    isLoading:true
+    isLoading:true,
+    theme_name:""
   },
 
   //子主题卡片点击监听函数
@@ -127,7 +128,8 @@ Page({
   onLoad: function (options) {
     var that = this
     that.setData({
-      theme_id: options.theme_id
+      theme_id: options.theme_id,
+      theme_name:options.theme_name
     })
     db.collection('son_theme_tb').aggregate()
     .match({

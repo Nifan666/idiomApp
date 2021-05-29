@@ -13,7 +13,8 @@ Page({
     son_theme_id: '',
     imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
     isLoading:true,
-    isSearch:false
+    isSearch:false,
+    son_theme_name:""
   },
   // 获取搜索文本框内容
   bindKeyInput: function (e) {
@@ -45,11 +46,16 @@ Page({
   },
   // 搜索文本框内容
   goToSearch:function(e){
+    var that = this
+    var key = this.data.inputValue
+    if(key==null || key.length==0 ||key==""){
+      this.onCancel()
+      return ;
+    }
+
     this.setData({
       isLoading:true
     })
-    var that = this
-    var key = this.data.inputValue
     db.collection('word_tb').aggregate()
     .match({
       'wname': {
@@ -83,7 +89,8 @@ Page({
     var that = this
     that.setData({
       theme_id: options.theme_id,
-      son_theme_id: options.son_theme_id
+      son_theme_id: options.son_theme_id,
+      son_theme_name:options.son_theme_name
     })
 
     // console.log("theme_id:"+that.data.theme_id)

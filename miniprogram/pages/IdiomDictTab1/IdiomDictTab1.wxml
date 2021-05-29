@@ -4,24 +4,9 @@
   <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
 </view>
 <view  class="phone-bar"></view>
-<!-- 搜索框 -->
-<view class="search-box">
-  <navigator class="search-box" url="/pages/GameChoosePage/GameChoosePage" hover-class="none">
-    <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
-  </navigator>
-  <!-- <view class='page_row' bindtap="suo">   -->
-    <!-- <view class="search">   -->
-      <!-- <view class="df search_arr">  
-        <icon class="searchcion" size='20' type='search'></icon>  
-        <input class="weui-input" type='text' placeholder="来自{{theme_id}}的小分类" bindinput="bindKeyInput" confirm-type="search" bindconfirm="goToSearch" value="{{inputValue}}"  maxlength="10"/>
-      </view>   -->
-    <!-- </view>   -->
-    
-    <!-- <view class='sousuo' bindtap="goToSearch">
-      <text class="txt">搜索</text>
-    </view>   -->
-  <!-- </view>   -->
-   
+<view class="back-line">
+  <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
+  <view class="title">{{theme_name}}</view>
 </view>
 <van-search
     value="{{ value }}"
@@ -38,8 +23,13 @@
 <loading wx:if="{{isLoading}}">
     加载中..
 </loading>
+
+<view wx:if="{{InternetNewWork.length==0 && isSearch}}" class="blank_box">
+  <image class="blank_image" mode="aspectFill" src="/images/search_blank.png"></image>
+</view>
+
 <view class="content" wx:if="{{!isSearch}}">
-  <navigator open-type="navigate"  url="/pages/DictTab1List/DictTab1List?theme_id={{theme_id}}&son_theme_id={{item.son_theme_id}}" class="box"
+  <navigator open-type="navigate"  url="/pages/DictTab1List/DictTab1List?theme_id={{theme_id}}&son_theme_id={{item.son_theme_id}}&son_theme_name={{item.son_theme_name}}" class="box"
    wx:for="{{son_theme}}" wx:for-item="item" wx:key="key"
    bindtap="goToIdiomList" data-name="{{index+1}}">
     <view class="pic">
@@ -54,7 +44,7 @@
   </navigator>
 </view>
 
-<scroll-view style="height:82%" wx:if="{{isSearch}}" scroll-y="true">
+<scroll-view style="height:82%" wx:if="{{isSearch && InternetNewWork.length>0}}" scroll-y="true">
     <navigator open-type="navigate"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" wx:key="key" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{InternetNewWork}}"> 
       <!-- <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?idiom_name={{index+1}}" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
         <view class="card-item-text">

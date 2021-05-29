@@ -4,6 +4,7 @@
 .phone-bar{
   /* display: block; */
   height: 20px;
+  background-color: #f5efdc;
 }
 .bg-image
 { 

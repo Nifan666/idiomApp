@@ -49,16 +49,16 @@
 </view>
 <!-- 选项卡内容 -->
 <view wx:if="{{InternetNewWork.length==0 && isSearch}}" class="blank_box">
-  <van-image width="300" height="380" fit="cover" src="/images/search_blank.png" /> 
+  <image class="blank_image" mode="aspectFill" src="/images/search_blank.png"></image>
 </view>
-<scroll-view style="height:68%" scroll-y="true">
+<scroll-view style="height:68%" wx:if="{{!isSearch || InternetNewWork.length>0}}" scroll-y="true">
   <view class="box">
     <!--选项1：传统成语-->
     <loading wx:if="{{isLoading}}">
       加载中..
     </loading>
     <view hidden="{{currentTab!==0}}" class="subject">
-      <navigator open-type="navigate" wx:if="{{!isSearch}}" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}" class="subject-item" wx:for="{{theme}}" wx:key="key" wx:for-item="item" data-name="{{index+1}}">
+      <navigator open-type="navigate" wx:if="{{!isSearch}}" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}&theme_name={{item.theme_name}}" class="subject-item" wx:for="{{theme}}" wx:key="key" wx:for-item="item" data-name="{{index+1}}">
       <!-- <navigator open-type="navigate" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}" bindtap="goToIdiomSubject" class="subject-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
         <view class="img">
           <image mode="widthFix" src="{{item.theme_pic}}"></image>

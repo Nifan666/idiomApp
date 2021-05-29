@@ -1,7 +1,7 @@
 <!--pages/CnGamePage/CnGamePage.wxml-->
 <!-- // wxml文件 -->
 
-<view>
+<view class="whole_page">
   <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/user_bg.png"></image> 
   <view class="con">
     <view  class="phone-bar"></view>
@@ -16,10 +16,13 @@
     </loading>
     <scroll-view class="scroll" scroll-y="true" hidden="{{isLoading}}">
       <view class="medal_con" style="height:{{200*(medal_num/3)}}rpx; justify-content: space-around;">
-        <image mode="aspectFit" src="{{mpicDir + item.mpic}}"  bindload="imageLoad" wx:for="{{medals}}" wx:key="key" wx:for-index="idx" wx:for-item="item"></image>
+        <image mode="aspectFit" src="{{mpicDir + item.mpic}}" bindtap="showImg" data-msg="{{item}}" bindload="imageLoad" wx:for="{{medals}}" wx:key="key" wx:for-index="idx" wx:for-item="item"></image>
         <view style="width:{{(3-(medal_num%3))*30}}%;" wx:if="{{medal_num%3!=0}}" space="nbsp"> </view>
       </view>
     </scroll-view>
+  </view>
+  <view class="showImgBig_box"  wx:if="{{isShowBigImg}}">
+    <image class="big_img" mode="aspectFill" src="{{imgUrl}}/user_bg.png"></image>
   </view>
 </view>
 
