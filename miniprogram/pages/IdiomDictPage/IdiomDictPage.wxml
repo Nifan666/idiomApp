@@ -6,7 +6,9 @@
 
 
 <view  class="phone-bar"></view>
-   
+<view class="center">
+  <text class="topText" >群词荟萃</text>
+</view>
 <!--顶部选项卡-->
 <view class="navbar">
   <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
@@ -49,7 +51,7 @@
 <view wx:if="{{InternetNewWork.length==0 && isSearch}}" class="blank_box">
   <van-image width="300" height="380" fit="cover" src="/images/search_blank.png" /> 
 </view>
-<scroll-view style="height:77%" scroll-y="true">
+<scroll-view style="height:68%" scroll-y="true">
   <view class="box">
     <!--选项1：传统成语-->
     <loading wx:if="{{isLoading}}">

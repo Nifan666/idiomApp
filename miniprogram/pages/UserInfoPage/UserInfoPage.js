@@ -20,7 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(!wx.getStorageSync('notFirst')){
+    if(wx.getStorageSync('notFirst')){
       this.setData({
         userinfo:wx.getStorageSync('user'),
         canIUseOpenData:wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName')

@@ -24,16 +24,16 @@
       <view class="row center margin-top2">
         <view class="down-box">
           <view class="down_text">
-            文字为布
-          </view>
-          <view class="down_text">
-            故事做笔
+            流于世间
           </view>
           <view class="down_text">
             传情达意
           </view>
           <view class="down_text">
-            流于世间
+            故事做笔
+          </view>
+          <view class="down_text">
+            文字为布
           </view>
         </view>
       </view>
