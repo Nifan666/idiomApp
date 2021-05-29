@@ -13,7 +13,24 @@ Page({
     imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/UserInfoPage",
     mpicDir:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/",
     isLoading:true,
-    imgNum:0
+    imgNum:0,
+    isMagnifyImg:false,
+    magnify_pic:""
+  },
+  cancelMagnify:function(){
+    this.setData({
+      isMagnifyImg:false,
+      magnify_pic:""
+    })
+  },
+  magnifyImg:function(e){
+    console.log(e)
+    var data = e.currentTarget.dataset.mpic;
+    // console.log(data);
+    this.setData({
+      isMagnifyImg:true,
+      magnify_pic:data
+    })
   },
   return_func:function(){
     wx.navigateBack({
@@ -53,6 +70,7 @@ Page({
               medal_num:0,
               isLoading:false
             })
+            return ;
           }
           db.collection('medal_tb').aggregate()
           .match({
