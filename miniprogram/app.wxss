@@ -43,3 +43,11 @@
   height: 45rpx; 
   margin-left: 10px;
 }
+.blank_box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}

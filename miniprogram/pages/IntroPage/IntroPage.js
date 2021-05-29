@@ -1,6 +1,7 @@
 // pages/IntroPage/IntroPage.js
 const App = getApp();
 const db = wx.cloud.database();
+// var plugin = requirePlugin("myPlugin"); 
 Page({
   /**
    * 页面的初始数据
@@ -23,6 +24,10 @@ Page({
         canIUseGetUserProfile: true
       })
     }
+    // let val = '在微信智言与微信智聆两大技术的支持下，微信AI团队推出了“微信对话开放平台”和“腾讯小微”智能硬件两大核心产品。微信支付团队最新发布的“微信青蛙Pro”在现场设置了体验区，让大家感受AI认脸的本事。'
+    // plugin.api.tokenize(val).then(e => {
+    //   console.log(e)
+    // })
   },
   imageLoad:function(){
     this.data.imageLoadNum++
@@ -33,56 +38,7 @@ Page({
         isShow:true
       })
     }
-  },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        wx.setStorageSync('user', res.userInfo)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-  getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-
-    //尚未完成
-    // db.collection('user_tb').aggregate()
-    // .match({
-    //   _openid: App.globalData._openid 
-    // }).end().then( res => { 
-    //   console.log(res)
-    //   //如果当前为空。执行插入
-    //   if(res.length==0){
-    //     db.collection('user_tb').insert({
-    //       data: {
-    //         _openid:App.globalData._openid,
-    //         ava_url: e.detail.userInfo.avatarUrl,
-    //         medal_num:0
-    //       }
-    //     })
-    //     return ;
-    //   }
-
-    //   //如果不为空，执行更新
-    //   db.collection('user_tb').where({
-    //     _openid:App.globalData._openid 
-    //   }).update({
-    //     data: {
-    //       ava_url: e.detail.userInfo.avatarUrl
-    //     }
-    //   })
-    // })
-  },
+  }, 
   ToIndex:function(){
     wx.redirectTo({
       url: '/pages/HomePage/HomePage',

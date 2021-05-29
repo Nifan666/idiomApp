@@ -1,4 +1,5 @@
-// app.js
+//app.js
+var plugin = requirePlugin("myPlugin"); 
 App({
   onLaunch() {
     wx.hideShareMenu()
@@ -24,10 +25,20 @@ App({
           name: 'login',
           complete: res => { 
             this.globalData._openid= res.result.openid;
+
+            plugin.init({
+              appid: "P5Ot9PHJDechCYqDFAW1AiK6OtG3Ja", //小程序示例账户，仅供学习和参考
+              openid: res.result.openid, //用户的openid，非必填，建议传递该参数
+              success: () => {}, //非必填
+              fail: (error) => {}, //非必填
+            });
+
+
           }
          }) 
       }
     })
+    
   },
   onShareAppMessage:function(res) {
     if (res.from == 'button') {

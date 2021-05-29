@@ -1,7 +1,7 @@
 // pages/ScanPage/ScanPage.js
-const db = wx.cloud.database(); 
-// var plugin = requirePlugin("myPlugin");
+const db = wx.cloud.database();  
 const App = getApp();
+var plugin = requirePlugin("myPlugin"); 
 // 机器人ID ：effectdff6d
 Page({
   /**
@@ -12,7 +12,8 @@ Page({
     baiduToken:"",
     isScan:false,
     colls:[],
-    isLoadedScan:false,
+    isLoadedScan:false,  //用于加载初始图片
+    isLoading:false  //用于上传图片
   },
   onClick:function(){
     //获取拍照权限
@@ -86,32 +87,56 @@ Page({
             success: function(res, resolve){              
                 console.log('get word success：',res.data);
                 var lis = res.data.words_result
-                var words = []
+                var words = new Set()
+                var stringStc = ""
                 for(var i=0;i<lis.length;i++){
-                  console.log(lis[i].words) 
-                  words.push(lis[i].words)
+                  stringStc  = stringStc+lis[i].words
                 } 
-                //开始在数据库中匹配   
-                db.collection('word_tb')
-                 .aggregate()
-                 .match(
-                  $.or([
-                    {
-                      wname: $.in(words)
-                    } 
-                  ])).end({
-                   success: res => {
-                      console.log(res)
-                      that.setData({
-                        isScan:true,
-                        colls:res.list,
-                        isLoadedScan:false
-                      })
-                   }})
+                plugin.api.tokenize(stringStc).then(e => {
+                  // console.log(e)
+                  // console.log("结果")
+                  // console.log(e.words_mix)
+                  var myBag = []
+                  myBag[0] =e.words_mix
+                  myBag[1] =e.words
+                  myBag[2] =e.entities
+
+                  for(var i=0;i<3;i++){
+                    var my_lis = myBag[i]
+                    for(var j=0;j<my_lis.length;j++){
+                      var item = my_lis[j]
+                      if(item.length>3){
+                        words.add(item) 
+                      }
+                    }
+                  } 
+                  // console.log(words)
+                  db.collection('word_tb')
+                  .aggregate()
+                  .match(
+                    $.or([
+                      {
+                        wname: $.in(Array.from(words))
+                      } 
+                    ])).end({
+                    success: res => {
+                        // console.log(res)
+                        that.setData({
+                          isScan:true,
+                          colls:res.list, 
+                          isLoading:false
+                        })
+                    }})
+                  })
             },            
             fail : function(res,reject){              
-                console.log('get word fail：',res.data);                       
-              },            
+              console.log('get word fail：',res.data);                       
+              that.setData({
+                isScan:true,
+                colls:[], 
+                isLoading:false
+              })
+            },            
         })
     }) 
   },
@@ -124,25 +149,28 @@ Page({
         sizeType: ['compressed'],      
         sourceType: ['album', 'camera'],      
         success: function (res) {
-            wx.showLoading({          
-                title: '上传中',        
+            // wx.showLoading({          
+            //     title: '',        
+            // })
+            that.setData({
+              isLoading:true
             })
-                const filePath = res.tempFilePaths[0]                
+            const filePath = res.tempFilePaths[0]                
                 // 上传图片 
                 
-                wx.getFileSystemManager().readFile({          
-                    filePath: filePath,          
-                    encoding: 'base64',          
-                    success: function(res) {            
-                        console.log("[读取图片数据success]",res.data);            
-                        that.scanImageInfo(res.data);    // 调用百度API解析图片获取文字      
-                    },            
-                    fail: function(res){            
-                        console.log("[读取图片数据fail]",res)          
-                    },            
-                    complete: function(res){            
-                        wx.hideLoading()          
-                    }    
+            wx.getFileSystemManager().readFile({          
+              filePath: filePath,          
+              encoding: 'base64',          
+              success: function(res) {            
+                  console.log("[读取图片数据success]",res.data);            
+                  that.scanImageInfo(res.data);    // 调用百度API解析图片获取文字      
+              },            
+              fail: function(res){            
+                  console.log("[读取图片数据fail]",res)          
+              },            
+              complete: function(res){            
+                  wx.hideLoading()          
+              }    
             })
         }    
     })  

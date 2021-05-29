@@ -4,6 +4,9 @@
 <view>
   <view class="con">
     <view  class="phone-bar"></view>
+    <loading wx:if="{{isLoading}}">
+      图片识别中...
+    </loading>
     
     <view wx:if="{{!isScan}}" >
       <view class="center">
@@ -25,7 +28,7 @@
         <van-button round type="default" bind:click="reScan">重新识别</van-button>
         <!-- <view class="text center_wss">开启识别</view> -->
       </view>
-      <view class="res_box">
+      <view class="res_box"  wx:if="{{colls.length>0}}">
         <view class="con"> 
           <scroll-view scroll-y="true" class="scroll-box">
             <view style="height:{{190*num}}rpx;padding-left:3%;padding-right:3%" >
@@ -55,6 +58,9 @@
             </view>
           </scroll-view>
         </view>
+      </view>
+      <view wx:else>
+        <van-empty image="search" space="nbsp" description="未识别出成语,请重新选择" />
       </view>
     </view>
   </view>

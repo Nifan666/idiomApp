@@ -25,42 +25,45 @@
     <loading wx:if="{{isLoading}}">
       加载中..
     </loading>
+    <view wx:if="{{colls.length==0}}" hidden="{{isLoading}}" class="blank_box">
+      <van-image width="318" height="448" fit="cover" src="/images/col_blank.png" /> 
+    </view>
     <view class="con"> 
-    <scroll-view scroll-y="true" class="scroll-box" hidden="{{isLoading}}">
-      <view style="height:{{190*num}}rpx;padding-left:3%;padding-right:3%" >
-        <view   wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:220rpx;margin-bottom:40rpx;">
-          <navigator  wx:if="{{item.item[0].w_type=='0'}}"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
-            <van-image width="80" height="80" fit="cover" bindload="imageLoad" src="{{imgUrl}}/{{item.item[0].wpic}}" />
-            <view class="coll-item-text">
-              <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
-              <view class="name" wx:else>{{item.wname}}</view>
-              
-              <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
-              <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
-            </view>
-            <view class="con-center">
-              <van-image width="50" height="50" fit="cover" bindload="imageLoad" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
-            </view>
-          </navigator>
-          <navigator  wx:else  url="/pages/DictConInternet/DictConInternet?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
-            <van-image width="80" height="80" fit="cover" bindload="imageLoad" wx:if="{{!isSearch}}" src="{{imgUrl}}/{{item.item[0].wpic}}" />
-            <van-image width="80" height="80" fit="cover" bindload="imageLoad" wx:else src="{{imgUrl}}/{{item.wpic}}" />
-            <view class="coll-item-text">
-              <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
-              <view class="name" wx:else>{{item.wname}}</view>
-              
-              <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
-              <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
-            </view>
-            <view class="con-center">
-              <van-image width="50" height="50" fit="cover" bindload="imageLoad" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
-            </view>
-          </navigator>
+      <scroll-view scroll-y="true" class="scroll-box" hidden="{{isLoading}}">
+        <view style="height:{{190*num}}rpx;padding-left:3%;padding-right:3%" >
+          <view   wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:220rpx;margin-bottom:40rpx;">
+            <navigator  wx:if="{{item.item[0].w_type=='0'}}"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
+              <van-image width="80" height="80" fit="cover" bindload="imageLoad" src="{{imgUrl}}/{{item.item[0].wpic}}" />
+              <view class="coll-item-text">
+                <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
+                <view class="name" wx:else>{{item.wname}}</view>
+                
+                <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
+                <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
+              </view>
+              <view class="con-center">
+                <van-image width="50" height="50" fit="cover" bindload="imageLoad" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
+              </view>
+            </navigator>
+            <navigator  wx:else  url="/pages/DictConInternet/DictConInternet?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >
+              <van-image width="80" height="80" fit="cover" bindload="imageLoad" wx:if="{{!isSearch}}" src="{{imgUrl}}/{{item.item[0].wpic}}" />
+              <van-image width="80" height="80" fit="cover" bindload="imageLoad" wx:else src="{{imgUrl}}/{{item.wpic}}" />
+              <view class="coll-item-text">
+                <view class="name" wx:if="{{!isSearch}}">{{item.item[0].wname}}</view>
+                <view class="name" wx:else>{{item.wname}}</view>
+                
+                <view class="detail" wx:if="{{!isSearch}}">{{tools.subStr(item.item[0].w_cn_interpre)}}</view>
+                <view class="detail" wx:if="{{isSearch}}">{{tools.subStr(item.w_cn_interpre)}}</view>
+              </view>
+              <view class="con-center">
+                <van-image width="50" height="50" fit="cover" bindload="imageLoad" src="{{imgUrl}}/UserInfoPage/r_arrow.png" />
+              </view>
+            </navigator>
+          </view>
         </view>
-      </view>
-    </scroll-view>
- 
-  </view>
+      </scroll-view>
+  
+    </view>
  
 </view>
 
