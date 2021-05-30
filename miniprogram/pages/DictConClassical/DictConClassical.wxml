@@ -16,8 +16,11 @@
       <image mode="scaleToFill"  wx:if="{{word.wpic.length>0 && imgUrl.length>0}}" src="{{imgUrl}}/{{word.wpic}}"></image>
     </view>
     <view class="icon">
-      <view class="icon-item" wx:for="{{navbar}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="key">
-        <view class="image-text">
+      <view class="icon-item" wx:for="{{navbar}}" bindtap="navbarTap" data-idx="{{index}}" wx:key="key"  >
+        <view class="image-text" wx:if="{{index==currentTab}}"  style="background-color: #762522;">
+          <view>{{item}}</view>
+        </view>
+        <view class="image-text" wx:else >
           <view>{{item}}</view>
         </view>
       </view>

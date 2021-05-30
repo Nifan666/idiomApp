@@ -75,9 +75,9 @@
           <view class="idiom-title">
             <view class="tilte">{{item.wname}}</view>
             <!-- <view class="tilte">网络新词{{index+1}}</view> -->
-            <view class="icon">
+            <!-- <view class="icon">
               <image mode="heightFix" wx:if="{{item.w_type=='1'}}" src="/images/hot.png"></image>
-            </view>
+            </view> -->
           </view>
           <view class="idiom-content">
             <text>{{item.w_cn_interpre}}</text>

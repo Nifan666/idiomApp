@@ -21,7 +21,7 @@ Page({
     if(this.data.num == 20){
       console.log("通关完成,跳转到结束页面")
       wx.navigateTo({
-        url: '/pages/GameEndPage/GameEndPage?correctTime=' + model,
+        url: '/pages/GameEndPage/GameEndPage',
       })
     }else{
       //问题是否居中 + 进入下一关
