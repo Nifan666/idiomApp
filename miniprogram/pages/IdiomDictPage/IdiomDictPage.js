@@ -26,8 +26,8 @@ Page({
       db.collection('word_tb').aggregate()
       .match({
         w_type:"1"
-      }).end().then( res => {  
-          // console.log(res)
+      }).limit(10000).end().then( res => {  
+          console.log(res)
           that.setData({
             // theme : res.list
             InternetNewWork: res.list,
@@ -148,7 +148,8 @@ Page({
 						$options: 'i' //$options:'1' 代表这个like的条件不区分大小写,详见开发文档
           },
           'w_type':''+this.data.currentTab
-				})
+        })
+        .limit(10000)
 				.end({success: res => {
           //网络词汇没有分类，直接查询
           this.setData({
@@ -212,7 +213,9 @@ Page({
                     },{
                       theme_id: $.in(themes)
                     }
-                  ])).end({
+                  ]))
+                  .limit(10000)
+                  .end({
                    success: res => {
                      //插入到sonTTheme内部
                     //  console.log("单词") 
@@ -237,7 +240,9 @@ Page({
                           },
                           w_type:''+this.data.currentTab
                          }])
-                       ])).end({
+                       ]))
+                       .limit(10000)
+                       .end({
                         success: res => {
                           //插入到sonTTheme内部
                           // console.log("每个单词") 

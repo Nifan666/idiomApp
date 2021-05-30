@@ -75,7 +75,9 @@ Page({
           {
             son_theme_id:$.in(sonthemes)
           } 
-        ])).end({
+        ]))
+        .limit(10000)
+        .end({
           success: res => {
             var li = res.list
             for(var i=0;i<li.length;i++)
@@ -96,7 +98,9 @@ Page({
                   },
                   w_type:'0'
                  }])
-               ])).end({
+               ]))
+               .limit(10000)
+               .end({
                 success: res => {
                   //插入到sonTTheme内部
                   // console.log("每个单词") 

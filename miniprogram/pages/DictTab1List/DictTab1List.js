@@ -34,7 +34,9 @@ Page({
     .match({
       theme_id: that.data.theme_id,
       son_theme_id: that.data.son_theme_id
-    }).end().then( res => {  
+    })
+    .limit(10000)
+    .end().then( res => {  
         // console.log(res)
         that.setData({
           // theme : res.list
@@ -63,7 +65,9 @@ Page({
         $options: 'i' //$options:'1' 代表这个like的条件不区分大小写,详见开发文档
       },
       w_type:'0'
-    }).end().then( res => {  
+    })
+    .limit(10000)
+    .end().then( res => {  
         // console.log(res)
         that.setData({
           word_list: res.list,
@@ -100,7 +104,9 @@ Page({
     .match({
       theme_id: that.data.theme_id,
       son_theme_id: that.data.son_theme_id
-    }).end().then( res => {  
+    })
+    .limit(10000)
+    .end().then( res => {  
         // console.log(res)
         that.setData({
           // theme : res.list
