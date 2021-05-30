@@ -33,17 +33,13 @@ Page({
       }],
     content_2: [
       {
-        name:'好句',
+        name:'中文造句',
         content:'1'
       },
       {
         name:'英文造句',
         content:'2'
-      },
-      {
-        name:'中文造句',
-        content:'3'
-      },
+      }
     ],
     content_3: ['成语典故'],
     content_4: ['释读'],
@@ -82,13 +78,28 @@ Page({
           if(res.list.length>0){
             niceStc[0] = res.list
           }
-          // niceStc[1] =["你好1","有点意思1","hhhh1"]
-          // niceStc[2] =["你好2","有点意思2","hhhh2"] 
-          // console.log(niceStc)
           that.setData({
             niceStc:niceStc
           })
       })
+
+      db.collection('eng_stc_tb').aggregate()
+      .match({
+        wid:myid
+      })
+      .end().then( res => {  
+          // console.log("cn_stc_tb")
+          console.log(res)
+          var niceStc = that.data.niceStc
+          if(res.list.length>0){
+            niceStc[1] = res.list
+          }
+          that.setData({
+            niceStc:niceStc
+          })
+      })
+    
+
     }
     this.setData({
       currentTab: e.currentTarget.dataset.idx
