@@ -1,0 +1,56 @@
+.return{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 10px;
+}
+.phone-bar{
+  /* display: block; */
+  width: 100%;
+  height: 20px;
+  background-color:  #f6f6f6;
+  position: absolute;
+  top: 0;
+  
+}
+
+.back-line{
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  height: 100rpx;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.bg-image
+{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: -1;  
+  /* border: 1px solid red; */
+}
+
+page{
+  height: 100% ;
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.img_text{
+  width: 100%;
+  height: 100%;
+}
+.con{ 
+  width : 100%;
+  height : 100%;  
+  position: fixed;  
+  z-index: 0;  
+}
+

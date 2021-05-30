@@ -50,7 +50,7 @@
               <text>我的勋章</text>
             </view>
           </navigator>
-          <navigator url="/images/game_item/game_bg.png"  class="nav" hover-class="none" >
+          <navigator url="/pages/aboutUsPage/aboutUsPage"  class="nav" hover-class="none" >
           <view class="nav_item" >
               <image class="nav_img" mode="aspectFill" src="{{imgUrl}}/spring.png"></image>
               <text>关于我们</text>

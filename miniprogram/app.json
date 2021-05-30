@@ -1,7 +1,8 @@
 {
   "pages": [
-    
+   
     "pages/IntroPage/IntroPage",
+    "pages/aboutUsPage/aboutUsPage",
     "pages/index/index",
     "pages/ScanPage/ScanPage",
     "pages/HomePage/HomePage",

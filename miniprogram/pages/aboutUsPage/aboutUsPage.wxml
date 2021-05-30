@@ -1,0 +1,17 @@
+<!--pages/CnGamePage/CnGamePage.wxml-->
+<!-- // wxml文件 -->
+
+<view>
+  <view class="con center">
+    <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/UserInfoPage/aboutus_bg.jpg"></image>
+    <view  class="phone-bar"></view>
+    <view class="back-line">
+      <navigator  hover-class="none">
+        <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
+      </navigator>
+    </view> 
+    <image class="img_text" mode="aspectFit" src="cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/UserInfoPage/aboutus_text.png"></image>
+  </view>
+   
+</view>
+
