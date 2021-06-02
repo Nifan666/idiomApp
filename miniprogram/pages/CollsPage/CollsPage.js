@@ -7,12 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
     value: '',
     colls:[],
     isSearch:false,
-    imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
     isLoading:true,
-    imgNum:0
+    imgNum:0,
+    scrollViewHeight: 0,
+    windowHeight: 0,
   },
 
   /**
@@ -23,6 +25,50 @@ Page({
       delta: 1
     })
   },
+  onShow:function(){
+    this.setData({
+      value: '',
+      colls:[],
+      isSearch:false,
+      isLoading:true,
+      imgNum:0
+    })
+    this.loadDate()
+  },
+  loadDate:function(){
+    var that = this
+    wx.cloud.callFunction({
+      name:'con2tb',
+      data:{
+        collection:'fav_tb',
+        from:'word_tb',
+        localField:'wid',
+        foreignField:'wid',
+        as:'item',
+        match:{
+          uid:App.globalData._openid
+        },
+        sort:{
+          add_time: -1
+        }
+      },
+      success:res=>{
+        if(res.result.list.length==0){
+          that.setData({
+            colls:res.result.list,
+            isSearch:false,
+            isLoading:false
+          })
+        }else{
+          that.setData({
+            colls:res.result.list,
+            isSearch:false
+           })
+        }
+      }
+    })
+  },
+
   imageLoad:function(){
     this.data.imgNum++
     // console.log(this.data.imgNum)
@@ -79,38 +125,44 @@ Page({
   },
   onLoad: function (options) {
     //查询收藏的物品
+    this.loadDate()
+    this.initLeftScorllViewHeight()
+  },
+  initLeftScorllViewHeight:function(){
     var that = this
-    wx.cloud.callFunction({
-      name:'con2tb',
-      data:{
-        collection:'fav_tb',
-        from:'word_tb',
-        localField:'wid',
-        foreignField:'wid',
-        as:'item',
-        match:{
-          uid:App.globalData._openid
-        },
-        sort:{
-          add_time: -1
-        }
-      },
-      success:res=>{
-        if(res.result.list.length==0){
+    wx.getSystemInfo({
+      success: function(res) {
           that.setData({
-            colls:res.result.list,
-            isSearch:false,
-            isLoading:false
-          })
-        }else{
-          that.setData({
-            colls:res.result.list,
-            isSearch:false
-           })
-        }
+              windowHeight: res.windowHeight
+          });
       }
-    })
-  
+    });
+
+
+    // 然后取出navbar和header的高度
+        // 根据文档，先创建一个SelectorQuery对象实例
+        let query = wx.createSelectorQuery().in(this);
+        // 然后逐个取出navbar和header的节点信息
+        // 选择器的语法与jQuery语法相同
+        query.select('.back-line').boundingClientRect();
+        query.select('.phone-bar').boundingClientRect();
+        query.select('#search').boundingClientRect(); 
+        
+        // 执行上面所指定的请求，结果会按照顺序存放于一个数组中，在callback的第一个参数中返回
+        query.exec((res) => {
+            // 分别取出navbar和header的高度
+            let backHeight = res[0].height;
+            let phoneHeight = res[1].height;
+            let searchHeight = res[2].height; 
+
+            // 然后就是做个减法
+            let scrollViewHeight = this.data.windowHeight - backHeight-phoneHeight-searchHeight;
+ 
+            // 算出来之后存到data对象里面
+            that.setData({
+                scrollViewHeight: scrollViewHeight
+            });
+        });
   },
   onChange(e) {
     this.setData({
@@ -120,7 +172,8 @@ Page({
   },
   onSearch() {
     this.setData({
-      isLoading:true
+      isLoading:true,
+      colls:[]
     })
     var that = this
     
@@ -176,29 +229,15 @@ Page({
 
       }
     })
-  
-
-    // db.collection("fav_tb").where({	 	//collectionName 表示欲模糊查询数据所在collection的名
-    //   // wname: db.RegExp({
-    //   //   regexp:'.*爱.*',
-    //   //   options: 'i',
-    //   // })
-    //   uid:App.globalData._openid
-    // }).get({
-    //   success:function(res){
-    //     //结果
-    //     var list = res.data
-        
-    //     console.log(res.data)
-    //     db.collection('fav_tb').where({
-    //       wid:_.in(list)
-    //     }).orderBy('add_time','desc').get({
-    //       success:function(res){
-    //         console.log(res)
-    //       }
-    //     })
-    //   }
-    // }) 
-
+  },
+  onShareAppMessage:function(res) {
+    if (res.from == 'button') {
+        console.log(res.target, res)
+    }
+    return {
+      title:'快来加入我吧',
+      path:"/pages/IntroPage/IntroPage",//这里是被分享的人点击进来之后的页面
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/global/logo.png'//这里是图片的路径
+    }
   }
 })

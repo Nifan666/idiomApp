@@ -8,7 +8,8 @@ page{
 .center{
   width: 100%; 
   text-align: center;
-  padding: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -196,7 +197,8 @@ page{
   margin-left: 5%;
   width: 15%;
   height: 60%;
-  color: #d78b81;
+  /* color: #d78b81; */
+  color: #fddad8;
   display: flex;
   text-align: center;
   align-content: center;

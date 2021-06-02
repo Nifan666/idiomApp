@@ -34,7 +34,30 @@ Page({
      this.getBaiduToken()
     // this.getData()
   },
-   
+  onShow:function(){
+    console.log("重新开始")
+  },
+
+  // onShow: function () {
+  //   console.log("再次显示啦")
+  //   // this.setData({
+  //   //   isScan:false,
+  //   //   colls:[],
+  //   //   isLoadedScan:false,  //用于加载初始图片
+  //   //   isLoading:false  //用于上传图片
+  //   // })
+  // },
+  onTabItemTap:function(){
+    if(this.data.isScan==true){
+      this.setData({
+        isScan:false,
+        colls:[],
+        isLoadedScan:false,  //用于加载初始图片
+        isLoading:false  //用于上传图片
+      }) 
+    }
+    
+  },
   reScan:function(){
     this.setData({
       isScan:false
@@ -72,7 +95,7 @@ Page({
     var that = this;
     const $ = db.command.aggregate
     const detectUrl = `https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=${that.data.baiduToken}`    // baiduToken是已经获取的access_Token
-    console.log('123',detectUrl) 
+    // console.log('123',detectUrl) 
       return new Promise(function(resolve,reject){        
         wx.request({            
             url: detectUrl,            
@@ -87,11 +110,22 @@ Page({
             success: function(res, resolve){              
                 console.log('get word success：',res.data);
                 var lis = res.data.words_result
+
+                if(lis==null){
+                  that.setData({
+                    isScan:true,
+                    colls:[], 
+                    isLoading:false
+                  })
+                  return ;
+                }
+
                 var words = new Set()
                 var stringStc = ""
                 for(var i=0;i<lis.length;i++){
                   stringStc  = stringStc+lis[i].words
                 } 
+                // console.log(stringStc)
                 plugin.api.tokenize(stringStc).then(e => {
                   // console.log(e)
                   // console.log("结果")
@@ -218,11 +252,14 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShareAppMessage:function(res) {
+    if (res.from == 'button') {
+        console.log(res.target, res)
+    }
+    return {
+      title:'快来加入我吧',
+      path:"/pages/IntroPage/IntroPage",//这里是被分享的人点击进来之后的页面
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/global/logo.png'//这里是图片的路径
+    }
   }
 })

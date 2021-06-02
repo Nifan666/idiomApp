@@ -13,9 +13,18 @@ Page({
     imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956",
     isSearch:false,
     isLoading:true,
-    theme_name:""
+    theme_name:"",
+    imgNum:0
   },
-
+  imageLoad:function(){
+    this.data.imgNum++
+    // console.log(this.data)
+    if(this.data.imgNum==this.data.son_theme.length){
+      this.setData({
+        isLoading:false
+      })
+    }
+  },
   //子主题卡片点击监听函数
   goToIdiomList:function(e){
     // 获取跳转至详情页的成语名
@@ -142,8 +151,7 @@ Page({
         // console.log(res)
         that.setData({
           // theme : res.list
-          son_theme: res.list,
-          isLoading:false
+          son_theme: res.list 
         })
     })
   },
@@ -189,11 +197,14 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShareAppMessage:function(res) {
+    if (res.from == 'button') {
+        console.log(res.target, res)
+    }
+    return {
+      title:'快来加入我吧',
+      path:"/pages/IntroPage/IntroPage",//这里是被分享的人点击进来之后的页面
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/global/logo.png'//这里是图片的路径
+    }
   }
 })

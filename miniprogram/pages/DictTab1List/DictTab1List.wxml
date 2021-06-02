@@ -1,8 +1,10 @@
 <!--pages/DictTab1List/DictTab1List.wxml-->
 <!-- 背景图 -->
 <view>
-  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
+  <image class="bg-image" wx:if="{{word_list.length==0 && isSearch}}" mode="aspectFill" src="/images/search_blank.png"></image>
+  <image class="bg-image" wx:else mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
 </view>
+
 <view  class="phone-bar"></view>
 
 <!-- 搜索框 -->
@@ -26,9 +28,7 @@
     placeholder="请输入搜索关键词"
   />    
 <!-- 分类列表 -->
-<view wx:if="{{word_list.length==0 && isSearch}}" class="blank_box" >
-  <image class="blank_image" mode="aspectFill" src="/images/search_blank.png"></image>
-</view>
+ 
 <scroll-view style="height:100%" wx:if="{{!isSearch||word_list.length>0}}" scroll-y="true">
   <view class="box">
     <view class="box-content">

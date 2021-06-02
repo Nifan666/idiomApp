@@ -48,6 +48,7 @@ Page({
   },
   getdbdata:function(){
     var that = this
+    const $ = db.command
       wx.cloud.callFunction({
         name:'randomSceneQues',
         data:{
@@ -61,11 +62,19 @@ Page({
           console.log(res.result.list[0])
           var realAnswer = res.result.list[0].ques[0];
           var ques = res.result.list[0].sg_ques_stc
+
+          that.setData({
+            ques_stc:ques,
+          })
           //获取三个随机答案
           db.collection("word_tb").aggregate()
           .sample({
             size: 3
-          }).end().then(  res => { 
+          })
+          .match({
+            wid:$.neq(realAnswer.wid)
+          })
+          .end().then(  res => { 
               var falseAnswer = res.list;
               var index = Math.floor(Math.random() * 4)
               var chooses = []
@@ -110,11 +119,15 @@ Page({
       })
     }
   },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShareAppMessage:function(res) {
+    if (res.from == 'button') {
+        console.log(res.target, res)
+    }
+    return {
+      title:'快来加入我吧',
+      path:"/pages/IntroPage/IntroPage",//这里是被分享的人点击进来之后的页面
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/global/logo.png'//这里是图片的路径
+    }
   }
 
   // 游戏一关结束

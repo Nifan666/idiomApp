@@ -81,7 +81,7 @@
 .rank_center{
   /* margin-top: 10%; */
   width: 65%;
-  height: 65%;
+  height:600rpx;
   /* background-color: rebeccapurple; */
   background-color: white;
   /* border: 1px solid white; */

@@ -1,7 +1,8 @@
 <!--pages/IdiomDictPage/IdiomDictPage.wxml-->
 <!-- 背景图 -->
 <view>
-  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
+  <image class="bg-image" wx:if="{{InternetNewWork.length==0 && isSearch}}" mode="aspectFill" src="/images/search_blank.png"></image>
+  <image class="bg-image" wx:else mode="aspectFill" src="{{imgUrl}}/GameChoosePage/bg.png"></image>
 </view>
 
 
@@ -48,20 +49,18 @@
     />
 </view>
 <!-- 选项卡内容 -->
-<view wx:if="{{InternetNewWork.length==0 && isSearch}}" class="blank_box">
-  <image class="blank_image" mode="aspectFill" src="/images/search_blank.png"></image>
-</view>
-<scroll-view style="height:68%" wx:if="{{!isSearch || InternetNewWork.length>0}}" scroll-y="true">
+<loading wx:if="{{isLoading}}">
+  加载中..
+</loading>
+<scroll-view style="height:{{scrollViewHeight}}px" hidden="{{isLoading}}" wx:if="{{!isSearch || InternetNewWork.length>0}}" scroll-y="true">
   <view class="box">
     <!--选项1：传统成语-->
-    <loading wx:if="{{isLoading}}">
-      加载中..
-    </loading>
-    <view hidden="{{currentTab!==0}}" class="subject">
+    
+    <view wx:if="{{currentTab==0}}" class="subject">
       <navigator open-type="navigate" wx:if="{{!isSearch}}" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}&theme_name={{item.theme_name}}" class="subject-item" wx:for="{{theme}}" wx:key="key" wx:for-item="item" data-name="{{index+1}}">
       <!-- <navigator open-type="navigate" url="/pages/IdiomDictTab1/IdiomDictTab1?theme_id={{index+1}}" bindtap="goToIdiomSubject" class="subject-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
         <view class="img">
-          <image mode="widthFix" src="{{item.theme_pic}}"></image>
+          <image mode="widthFix" bindload="imageLoad" src="{{item.theme_pic}}"></image>
         </view>
         <view class="image-text">
           <view>{{item.theme_name}}</view>
@@ -74,14 +73,10 @@
         <view class="card-item-text">
           <view class="idiom-title">
             <view class="tilte">{{item.wname}}</view>
-            <!-- <view class="tilte">网络新词{{index+1}}</view> -->
-            <!-- <view class="icon">
-              <image mode="heightFix" wx:if="{{item.w_type=='1'}}" src="/images/hot.png"></image>
-            </view> -->
+ 
           </view>
           <view class="idiom-content">
             <text>{{item.w_cn_interpre}}</text>
-            <!-- <text>这是网络新词的意思111111111111111111111111111111</text> -->
           </view>
         </view>
         <view class="card-item-icon">
@@ -95,7 +90,7 @@
      
 
     <!-- 选项2：网络新词 -->
-    <view hidden="{{currentTab!=1}}" class="box-content">
+    <view wx:else class="box-content" hidden="{{isLoading}}">
       <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?wid={{item.wid}}" wx:for="{{InternetNewWork}}" class="card-item" wx:key="key" wx:for="{{InternetNewWork}}"> 
       <!-- <navigator open-type="navigate" url="/pages/DictConInternet/DictConInternet?idiom_name={{index+1}}" wx:for="{{InternetNewWork}}" class="card-item" wx:for="{{10}}" data-name="{{index+1}}"> -->
         <view class="card-item-text">
@@ -103,18 +98,17 @@
             <view class="tilte">{{item.wname}}</view>
             <!-- <view class="tilte">网络新词{{index+1}}</view> -->
             <view class="icon">
-              <image mode="heightFix" wx:if="{{!isTotalNet && !isSearch}}" src="{{imgUrl}}/global/hot.png"></image>
-              <image mode="heightFix" wx:else src="{{imgUrl}}/global/net.png"></image>
+              <image mode="heightFix" bindload="imageLoad" wx:if="{{!isTotalNet && !isSearch}}" src="{{imgUrl}}/global/hot.png"></image>
+              <image mode="heightFix" bindload="imageLoad" wx:else src="{{imgUrl}}/global/net.png"></image>
             </view>
           </view>
           <view class="idiom-content">
             <text>{{item.w_cn_interpre}}</text>
-            <!-- <text>这是网络新词的意思111111111111111111111111111111</text> -->
           </view>
         </view>
         <view class="card-item-icon">
           <navigator open-type="switchTab" url="/pages/GameChoosePage/GameChoosePage">
-            <image mode="heightFix" src="/images/icon.png"></image>
+            <image mode="heightFix"  src="/images/icon.png"></image>
           </navigator>
         </view>
       </navigator>

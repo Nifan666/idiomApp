@@ -1,7 +1,10 @@
 <!--pages/CnGamePage/CnGamePage.wxml-->
 <!-- // wxml文件 -->
-
-<view>
+<!-- 分类内容 -->
+<loading wx:if="{{isLoading}}">
+    加载中..
+</loading>
+<view >
   <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/user_bg.png"></image> 
   <view class="con">
     <view  class="phone-bar"></view>
@@ -12,25 +15,25 @@
       </navigator>
     </view>
   </view>
-  <view class="rank_box">
+  <view class="rank_box" >
     <view class="rank_img_center">
       <image class="rank_img" mode="scaleToFill" src="{{imgUrl}}/rank_item/rank_img.png"></image>
-      <view class="rank_center_box">
-        <view class="rank_center">
-          <scroll-view>
+      <view class="rank_center_box" hidden="{{isLoading}}">
+        <view class="rank_center" >
+          <scroll-view >
             <view class="rank_item" wx:for="{{users}}" wx:for-index="idx" wx:key="item" wx:for-item="user">
               <!-- <view class="userinfo-avatar" bindtap="bindViewTap">
                 <open-data type="userAvatarUrl"></open-data>
               </view> -->
               <view wx:if="{{user._openid == openid}}" class="bg_red normal_row"> 
-                <image mode="aspectFill" src="{{user.ava_url}}"></image>
+                <image mode="aspectFill" bindload="imageLoad" src="{{user.ava_url}}"></image>
                 <text>获取勋章{{user.medal_num}}枚</text>
                 <view wx:if="{{idx<4}}"  class="level">{{idx+1}}</view>
                 <view wx:elif="{{idx==4 && rank_last!=-1}}"  class="level">{{rank_last}}</view>
                 <view wx:elif="{{idx==4 && rank_last==-1}}"  class="level">{{idx+1}}</view>
               </view>
               <view wx:else class="normal_row"> 
-                <image mode="aspectFill" src="{{user.ava_url}}"></image>
+                <image mode="aspectFill" bindload="imageLoad" src="{{user.ava_url}}"></image>
                 <text>获取勋章{{user.medal_num}}枚</text>
                 <view wx:if="{{idx<4}}"  class="level">{{idx+1}}</view>
                 <view wx:elif="{{idx==4 && rank_last!=-1}}"  class="level">{{rank_last}}</view>

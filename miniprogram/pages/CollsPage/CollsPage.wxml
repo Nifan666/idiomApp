@@ -2,8 +2,8 @@
 <!-- // wxml文件 -->
 <wxs src="../../wxs/strUtil.wxs" module="tools" />
 <view>
-  <image class="bg-image" mode="aspectFill" src="{{imgUrl}}/global/col_bg.png"></image> 
-  
+    <image class="bg-image" mode="aspectFill" wx:if="{{colls.length==0 && !isLoading}}" src="/images/col_blank.png"></image> 
+    <image class="bg-image" mode="aspectFill" wx:else src="{{imgUrl}}/global/col_bg.png"></image> 
     <view  class="phone-bar"></view>
     <view class="back-line">
       <navigator url="/pages/GameChoosePage/GameChoosePage">
@@ -12,6 +12,7 @@
       </navigator>
     </view>
     <van-search
+      id="search"
       value="{{ value }}"
       shape="round"
       background="#E9E9E9"
@@ -25,11 +26,9 @@
     <loading wx:if="{{isLoading}}">
       加载中..
     </loading>
-    <view wx:if="{{colls.length==0}}" hidden="{{isLoading}}" class="blank_box">
-      <van-image width="318" height="448" fit="cover" src="/images/col_blank.png" /> 
-    </view>
+   
     <view class="con"> 
-      <scroll-view scroll-y="true" class="scroll-box" hidden="{{isLoading}}">
+      <scroll-view scroll-y="true" class="scroll-box" style="height:{{scrollViewHeight}}px" hidden="{{isLoading}}">
         <view style="height:{{190*num}}rpx;padding-left:3%;padding-right:3%" >
           <view   wx:for="{{colls}}" wx:for-index="idx" wx:key="key" wx:for-item="item"  style="height:220rpx;margin-bottom:40rpx;">
             <navigator  wx:if="{{item.item[0].w_type=='0'}}"  url="/pages/DictConClassical/DictConClassical?wid={{item.wid}}" class="nav_tab con-center coll-item-box" >

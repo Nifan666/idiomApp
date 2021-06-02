@@ -12,7 +12,18 @@ Page({
     imageUrl:null,
     imgUrl:"cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/UserInfoPage",
     rank_last:-1,
-    openid:App.globalData._openid
+    openid:App.globalData._openid,
+    imgNum:0,
+    isLoading:true
+  },
+  imageLoad:function(){
+    this.data.imgNum++
+    // console.log(this.data)
+    if(this.data.imgNum==this.data.users.length){
+      this.setData({
+        isLoading:false
+      })
+    }
   },
   return_func:function(){
     wx.navigateBack({
@@ -45,7 +56,7 @@ Page({
         .limit(5)
         .end().then(  res => { 
           var users = res.list
-
+          // console.log(res.list)
           var lis = []
           for(var i=0;i<users.length;i++){
             if(users[i].medal_num==0){
@@ -82,7 +93,7 @@ Page({
           //不是前5，就将第5个人替换成本人，顺便表示本人排名
           if(!isTop5){
             //先查本人的金牌数，再统计比本人金牌数多的
-            var user = res.data[0]
+            // var user = res.data[0]
             //把排名呈现出来
             //直接插入 + 本人总排名
             if(users.length<5){
@@ -160,11 +171,14 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onShareAppMessage:function(res) {
+    if (res.from == 'button') {
+        console.log(res.target, res)
+    }
+    return {
+      title:'快来加入我吧',
+      path:"/pages/IntroPage/IntroPage",//这里是被分享的人点击进来之后的页面
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/global/logo.png'//这里是图片的路径
+    }
   }
 })

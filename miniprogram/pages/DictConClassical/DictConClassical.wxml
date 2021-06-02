@@ -5,8 +5,8 @@
   <view  class="phone-bar"></view>
   <view class="back-line">
     <image bindtap="return_func" class="return" src="{{imgUrl}}/GameChoosePage/return.png"></image>
-    <van-image width="20" wx:if="{{!isColled}}" bindtap="changeCollState" height="20" fit="cover" src="{{imgUrl}}/global/star.png" />
-    <van-image width="20" wx:else height="20" bindtap="changeCollState" fit="cover" src="{{imgUrl}}/global/star_fill.png" />
+    <van-image width="25" height="25" wx:if="{{!isColled}}" bindtap="changeCollState"  fit="cover" src="/images/star.png" />
+    <van-image width="25" height="24" wx:else  bindtap="changeCollState" fit="cover" src="/images/star_fill.png" />
   </view>
   <view class="box-label">
     <view class="title">{{word.wname}}</view>

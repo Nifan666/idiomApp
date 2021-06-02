@@ -71,11 +71,10 @@ page{
 
 /* // wxss文件
 //整个页面竖向布局 */
-
 .phone-bar{
   /* display: block; */
   height: 20px;
-  background-color: #E9E9E9;
+  background-color: #EBE6E0;
 }
 .bg-image
 { 

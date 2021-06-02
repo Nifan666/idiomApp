@@ -48,9 +48,16 @@ Page({
   
   // bannerSwiper
   bannerSwiper(e) {
+
+    var bannerData = this.data.bannerData
+    for(var i = 0;i<5;i++){
+      bannerData[i].isOpenFilp = false
+    }
+    
     const that = this, bannerCurrent = e.detail.current;
     that.setData({
-      bannerCurrent
+      bannerCurrent:bannerCurrent,
+      bannerData:bannerData
     })
   },
 
@@ -60,6 +67,7 @@ Page({
     const index = e.currentTarget.dataset.index;
     const bannerData = that.data.bannerData;
     var item = e.currentTarget.dataset.msg 
+
     if(that.data.bannerData[index].isOpenFilp==true){
       if(item.w_type=="0"){
         wx.navigateTo({
@@ -94,7 +102,7 @@ Page({
     return {
       title:'快来加入我吧',
       path:"/pages/IntroPage/IntroPage",//这里是被分享的人点击进来之后的页面
-      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/Scan/scan.png'//这里是图片的路径
+      imageUrl: 'cloud://cloud1-8g8oiizf3797896b.636c-cloud1-8g8oiizf3797896b-1305728956/global/logo.png'//这里是图片的路径
     }
   }, 
 })

@@ -118,9 +118,11 @@
 .content .pic{
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
+}
+.son_pic{
+  width: 100%;
+  height: 100%;
   border-radius: 50em;
-  overflow: hidden;
 }
 .content .txt{
   margin-top: 5rpx;
